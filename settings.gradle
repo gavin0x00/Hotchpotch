@@ -1,1 +1,1 @@
-include ':app', ':BaseLibrary', ':Provider'
+include ':app', ':BaseLibrary', ':Provider', ':gankio'

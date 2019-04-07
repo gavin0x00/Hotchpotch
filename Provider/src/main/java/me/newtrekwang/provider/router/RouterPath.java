@@ -9,25 +9,6 @@ package me.newtrekwang.provider.router;
  */
 public final class RouterPath {
     private RouterPath(){}
-
-    /**
-     * @className RouterPath
-     * @createDate 2018/9/3 14:06
-     * @author newtrekWang
-     * @email 408030208@qq.com
-     * @desc 用户中心业务模块
-     *
-     */
-    public static final class UserCenterModule {
-
-
-        private UserCenterModule(){}
-        public static final String PATH_LOGIN = "/userCenterModule/login";
-        public static final String PATH_REGISTER_VALIDATE = "/userCenter/registerValidate";
-        public static final String PATH_RESETPWD = "/userCenterModule/resetPwd";
-        public static final String PATH_USERINFO = "/userCenterModule/userInfo";
-        public static final String PATH_FORGET_PWD = "/userCenterModule/forgetPwd";
-    }
     /**
      * @className RouterPath
      * @createDate 2018/9/3 14:07
@@ -42,27 +23,43 @@ public final class RouterPath {
     }
     /**
      * @className RouterPath
-     * @createDate 2018/9/6 15:42
+     * @createDate 2019/4/7 20:45
      * @author newtrekWang
      * @email 408030208@qq.com
-     * @desc 业务模块1
+     * @desc Gank模块
      *
      */
-    public static final class OneModule{
-        private OneModule(){}
-        public static final String PATH_FRAGMENT_ONE = "/oneModule/oneFragment";
+    public static final class GankModule{
+        private GankModule(){}
+        public static final String PATH_FRAGMENT_GANK = "/gankModule/GankFragment";
     }
     /**
      * @className RouterPath
-     * @createDate 2018/9/6 15:42
+     * @createDate 2019/4/7 20:44
      * @author newtrekWang
      * @email 408030208@qq.com
-     * @desc 业务模块2
+     * @desc 百思不得姐模块
      *
      */
-    public static final class TwoModule{
-        private TwoModule(){}
-        public static final String PATH_FRAGMENT_TWO = "/twoModule/twoFragment";
+    public static final class BaisiModule{
+        private BaisiModule(){}
+        public static final String PATH_FRAGMENT_BAISI = "/BaisiModule/BaisiFragment";
+    }
+
+    /**
+     * 豆瓣电影模块
+     */
+    public static final class DoubanModule{
+        private DoubanModule(){}
+        public static final String PATH_FRAGMENT_DOUBAN = "/doubanModule/DoubanFragment";
+    }
+
+    /**
+     * 其他模块
+     */
+    public static final class OtherModule{
+        private OtherModule(){}
+        public static final String PATH_FRAGMENT_OTHER = "/otherModule/OtherFragment";
     }
 
 
