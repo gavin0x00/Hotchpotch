@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/main_bottom_nav_module_gank"
-        android:icon="@drawable/ic_gank"
-        android:title="@string/gank_io" />
+        android:id="@+id/main_bottom_nav_module_technology"
+        android:icon="@drawable/ic_technology"
+        android:title="@string/technology" />
     <item
-        android:id="@+id/main_bottom_nav_module_baisi"
-        android:icon="@drawable/ic_joker"
-        android:title="@string/baisi" />
+        android:id="@+id/main_bottom_nav_module_news"
+        android:icon="@drawable/ic_news"
+        android:title="@string/news" />
     <item
-        android:id="@+id/main_bottom_nav_module_douban"
-        android:icon="@drawable/ic_movie"
-        android:title="@string/douban_movie" />
+        android:id="@+id/main_bottom_nav_module_entertainment"
+        android:icon="@drawable/ic_entertainment"
+        android:title="@string/entertainment" />
     <item
         android:id="@+id/main_bottom_nav_other"
         android:icon="@drawable/ic_other"

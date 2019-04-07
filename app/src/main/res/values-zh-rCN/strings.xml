@@ -5,4 +5,7 @@
     <string name="baisi">百思</string>
     <string name="douban_movie">豆瓣电影</string>
     <string name="other">其他</string>
+    <string name="technology">技术干货</string>
+    <string name="news">新闻</string>
+    <string name="entertainment">娱乐</string>
 </resources>

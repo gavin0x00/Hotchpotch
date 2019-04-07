@@ -4,4 +4,25 @@
     <string name="baisi">百思</string>
     <string name="douban_movie">豆瓣电影</string>
     <string name="other">其他</string>
+    <string name="technology">Technology</string>
+    <string name="news">News</string>
+    <string name="entertainment">Entertainment</string>
+
+
+    <string-array name="tech_list">
+        <item>GankIO</item>
+        <item>玩Android</item>
+        <item>条目3</item>
+        <item>条目4</item>
+        <item>条目5</item>
+        <item>条目6</item>
+        <item>条目7</item>
+        <item>条目8</item>
+        <item>条目9</item>
+        <item>条目10</item>
+        <item>条目11</item>
+        <item>条目12</item>
+        <item>条目13</item>
+        <item>条目14</item>
+    </string-array>
 </resources>

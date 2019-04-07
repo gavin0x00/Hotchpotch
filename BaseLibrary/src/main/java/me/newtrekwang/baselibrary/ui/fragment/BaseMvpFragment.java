@@ -10,8 +10,7 @@ import me.newtrekwang.baselibrary.injection.component.ActivityComponent;
 import me.newtrekwang.baselibrary.injection.component.DaggerActivityComponent;
 import me.newtrekwang.baselibrary.injection.module.LifeCycleComponentModule;
 import me.newtrekwang.baselibrary.presenter.BasePresenter;
-import me.newtrekwang.baselibrary.presenter.view.BaseView;
-import me.newtrekwang.baselibrary.utils.ToastUtils;
+import me.newtrekwang.baselibrary.presenter.view.BaseMvpView;
 
 /**
  * @className BaseMvpFragment
@@ -22,7 +21,7 @@ import me.newtrekwang.baselibrary.utils.ToastUtils;
  * @param <T>
  *
  */
-public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment implements BaseView {
+public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment implements BaseMvpView {
 
     /**
      * presenter
@@ -58,13 +57,8 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
 
 
     @Override
-    public void showToast(String msg) {
-        ToastUtils.showShort(msg);
-    }
-
-    @Override
     public void onError(String error) {
-        ToastUtils.showShort(error);
+        showToast(error);
     }
 
 

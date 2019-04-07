@@ -11,8 +11,7 @@ import me.newtrekwang.baselibrary.injection.component.AppComponent;
 import me.newtrekwang.baselibrary.injection.component.DaggerActivityComponent;
 import me.newtrekwang.baselibrary.injection.module.LifeCycleComponentModule;
 import me.newtrekwang.baselibrary.presenter.BasePresenter;
-import me.newtrekwang.baselibrary.presenter.view.BaseView;
-import me.newtrekwang.baselibrary.utils.ToastUtils;
+import me.newtrekwang.baselibrary.presenter.view.BaseMvpView;
 import me.newtrekwang.baselibrary.widgets.LoadingDialog;
 
 /**
@@ -23,7 +22,7 @@ import me.newtrekwang.baselibrary.widgets.LoadingDialog;
  * @desc mvpActivity基类
  *
  */
-public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActivity implements BaseView {
+public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActivity implements BaseMvpView {
     /**
      * presenter
      */
@@ -63,13 +62,9 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
 
     @Override
     public void onError(String error) {
-        ToastUtils.showShort(error);
+        showToast(error);
     }
 
-    @Override
-    public void showToast(String msg) {
-        ToastUtils.showShort(msg);
-    }
 
     @Override
     public void showLoading() {

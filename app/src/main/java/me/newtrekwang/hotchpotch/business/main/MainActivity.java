@@ -27,7 +27,7 @@ import me.newtrekwang.provider.router.RouterPath;
  *
  */
 @Route(path = RouterPath.MainModule.PATH_MAIN)
-public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainView {
+public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainMvpView {
 
     /**
      * 底部导航栏
@@ -42,17 +42,17 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
      */
     private Fragment mCurrentFragment;
     /**
-     * Gank
+     * 技术模块碎片
      */
-    private Fragment mGankFragment;
+    private Fragment mTechFragment;
     /**
-     * 百思不得姐
+     * 新闻模块碎片
      */
-    private Fragment mBaisiFragment;
+    private Fragment mNewsFragment;
     /**
-     * 豆瓣电影
+     * 娱乐模块碎片
      */
-    private Fragment mMovieFragment;
+    private Fragment mEnterFragment;
     /**
      * 其他
      */
@@ -72,9 +72,9 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
      * 初始化数据
      */
     private void initData() {
-        mGankFragment = (Fragment) ARouter.getInstance().build(RouterPath.GankModule.PATH_FRAGMENT_GANK).navigation();
-        mBaisiFragment = (Fragment) ARouter.getInstance().build(RouterPath.BaisiModule.PATH_FRAGMENT_BAISI).navigation();
-        mMovieFragment = (Fragment) ARouter.getInstance().build(RouterPath.DoubanModule.PATH_FRAGMENT_DOUBAN).navigation();
+        mTechFragment = (Fragment) ARouter.getInstance().build(RouterPath.TechModule.PATH_TECH).navigation();
+        mNewsFragment = (Fragment) ARouter.getInstance().build(RouterPath.NewsModule.PATH_FRAGMENT_NEWS).navigation();
+        mEnterFragment = (Fragment) ARouter.getInstance().build(RouterPath.EnterModule.PATH_FRAGMENT_ENTER).navigation();
         mOtherFragment = (Fragment) ARouter.getInstance().build(RouterPath.OtherModule.PATH_FRAGMENT_OTHER).navigation();
     }
 
@@ -90,12 +90,12 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.main_bottom_nav_module_gank:
-                        return changeToFragment(mGankFragment);
-                    case R.id.main_bottom_nav_module_baisi:
-                        return changeToFragment(mBaisiFragment);
-                    case R.id.main_bottom_nav_module_douban:
-                        return  changeToFragment(mMovieFragment);
+                    case R.id.main_bottom_nav_module_technology:
+                        return changeToFragment(mTechFragment);
+                    case R.id.main_bottom_nav_module_news:
+                        return changeToFragment(mNewsFragment);
+                    case R.id.main_bottom_nav_module_entertainment:
+                        return  changeToFragment(mEnterFragment);
                     case R.id.main_bottom_nav_other:
                         return changeToFragment(mOtherFragment);
                     default:

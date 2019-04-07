@@ -26,40 +26,67 @@ public final class RouterPath {
      * @createDate 2019/4/7 20:45
      * @author newtrekWang
      * @email 408030208@qq.com
-     * @desc Gank模块
+     * @desc 技术干货模块
      *
      */
-    public static final class GankModule{
-        private GankModule(){}
-        public static final String PATH_FRAGMENT_GANK = "/gankModule/GankFragment";
+    public static final class TechModule {
+        private TechModule(){}
+
+        /**
+         * 技术干货首页碎片
+         */
+        public static final String PATH_TECH = "/TechModule/TechMain";
+
+/************************************************ GankIO start ***********************************************************************/
+        /**
+         * GankIO 首页
+         */
+        public static final String PATH_TECH_GANK_IO_MAIN = "/TechModule/GankIOMain";
+        /**
+         *  GankIO 最近
+         */
+        public static final String PATH_TECH_GANK_IO_RECENTLY = "/TechModule/GankIORecently";
+
+/************************************************ GankIO end ***********************************************************************/
+
     }
     /**
      * @className RouterPath
      * @createDate 2019/4/7 20:44
      * @author newtrekWang
      * @email 408030208@qq.com
-     * @desc 百思不得姐模块
+     * @desc 新闻资讯模块
      *
      */
-    public static final class BaisiModule{
-        private BaisiModule(){}
-        public static final String PATH_FRAGMENT_BAISI = "/BaisiModule/BaisiFragment";
+    public static final class NewsModule {
+        private NewsModule(){}
+        public static final String PATH_FRAGMENT_NEWS = "/NewsModule/NewsFragment";
     }
 
-    /**
-     * 豆瓣电影模块
-     */
-    public static final class DoubanModule{
-        private DoubanModule(){}
-        public static final String PATH_FRAGMENT_DOUBAN = "/doubanModule/DoubanFragment";
+   /**
+    * @className RouterPath
+    * @createDate 2019/4/8 0:26
+    * @author newtrekWang
+    * @email 408030208@qq.com
+    * @desc 娱乐模块
+    *
+    */
+    public static final class EnterModule {
+        private EnterModule(){}
+        public static final String PATH_FRAGMENT_ENTER = "/EnterModule/EnterFragment";
     }
 
-    /**
-     * 其他模块
-     */
+   /**
+    * @className RouterPath
+    * @createDate 2019/4/8 0:26
+    * @author newtrekWang
+    * @email 408030208@qq.com
+    * @desc 其他模块
+    *
+    */
     public static final class OtherModule{
         private OtherModule(){}
-        public static final String PATH_FRAGMENT_OTHER = "/otherModule/OtherFragment";
+        public static final String PATH_FRAGMENT_OTHER = "/OtherModule/OtherFragment";
     }
 
 

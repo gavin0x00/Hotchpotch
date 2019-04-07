@@ -1,6 +1,6 @@
 package me.newtrekwang.baselibrary.rx;
 
-import me.newtrekwang.baselibrary.presenter.view.BaseView;
+import me.newtrekwang.baselibrary.presenter.view.BaseMvpView;
 import me.newtrekwang.baselibrary.utils.ExceptionHandle;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
@@ -17,19 +17,19 @@ public abstract class BaseSingleSubscriber<T> implements SingleObserver<T> {
     /**
      * view层的引用，可以做一些通用的view显示
      */
-    public BaseView baseView;
+    public BaseMvpView baseMvpView;
 
-    public BaseSingleSubscriber(BaseView baseView) {
-        this.baseView = baseView;
+    public BaseSingleSubscriber(BaseMvpView baseMvpView) {
+        this.baseMvpView = baseMvpView;
     }
 
     @Override
     public void onError(Throwable e) {
         // 关闭loading
-        baseView.hideLoading();
+        baseMvpView.hideLoading();
         // 异常处理
         ExceptionHandle.ResponseException exception = ExceptionHandle.handleException(e);
-        baseView.onError(exception.message);
+        baseMvpView.onError(exception.message);
     }
 
     @Override
@@ -40,7 +40,7 @@ public abstract class BaseSingleSubscriber<T> implements SingleObserver<T> {
     @Override
     public void onSuccess(T t) {
         // 关闭loading
-        baseView.hideLoading();
+        baseMvpView.hideLoading();
     }
 
 

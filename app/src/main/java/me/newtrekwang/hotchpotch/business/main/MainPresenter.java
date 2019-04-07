@@ -15,7 +15,7 @@ import me.newtrekwang.baselibrary.presenter.BasePresenter;
  * @email 408030208@qq.com
  * @desc 首页业务处理类
  */
-public class MainPresenter extends BasePresenter<MainView> {
+public class MainPresenter extends BasePresenter<MainMvpView> {
     @Inject
     public MainPresenter(){}
     @Inject

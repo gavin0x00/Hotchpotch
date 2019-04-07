@@ -1,4 +1,4 @@
-package me.newtrekwang.gankio.business;
+package me.newtrekwang.gankio.business.recently;
 
 
 import android.os.Bundle;
@@ -14,18 +14,18 @@ import me.newtrekwang.provider.router.RouterPath;
 
 
 /**
- * @className GankFragment
+ * @className GankRecentlyFragment
  * @createDate 2019/2/23 17:27
  * @author newtrekWang
  * @email 408030208@qq.com
  * @desc GankIO 模块首页
  *
  */
-@Route(path = RouterPath.GankModule.PATH_FRAGMENT_GANK)
-public class GankFragment extends Fragment {
+@Route(path = RouterPath.TechModule.PATH_TECH_GANK_IO_RECENTLY)
+public class GankRecentlyFragment extends Fragment {
 
 
-    public GankFragment() {
+    public GankRecentlyFragment() {
         // Required empty public constructor
     }
 
@@ -34,7 +34,7 @@ public class GankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gank, container, false);
+        return inflater.inflate(R.layout.fragment_gank_recently, container, false);
     }
 
 }

@@ -2,7 +2,7 @@ package me.newtrekwang.baselibrary.presenter;
 
 import android.content.Context;
 
-import me.newtrekwang.baselibrary.presenter.view.BaseView;
+import me.newtrekwang.baselibrary.presenter.view.BaseMvpView;
 import me.newtrekwang.baselibrary.utils.NetWorkUtils;
 
 
@@ -15,7 +15,7 @@ import me.newtrekwang.baselibrary.utils.NetWorkUtils;
  * @param <T>
  *
  */
-public class BasePresenter<T extends BaseView> {
+public class BasePresenter<T extends BaseMvpView> {
     /**
      * 视图引用
      */
