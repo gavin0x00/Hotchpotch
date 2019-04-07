@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_bottom_nav_module_gank"
+        android:icon="@drawable/ic_gank"
+        android:title="@string/gank_io" />
+    <item
+        android:id="@+id/main_bottom_nav_module_baisi"
+        android:icon="@drawable/ic_joker"
+        android:title="@string/baisi" />
+    <item
+        android:id="@+id/main_bottom_nav_module_douban"
+        android:icon="@drawable/ic_movie"
+        android:title="@string/douban_movie" />
+    <item
+        android:id="@+id/main_bottom_nav_other"
+        android:icon="@drawable/ic_other"
+        android:title="@string/other" />
+</menu>

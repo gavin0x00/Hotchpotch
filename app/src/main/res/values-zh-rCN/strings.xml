@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hotchpotch</string>
+    <string name="app_name">杂烩</string>
     <string name="gank_io">GankIO</string>
     <string name="baisi">百思</string>
     <string name="douban_movie">豆瓣电影</string>
