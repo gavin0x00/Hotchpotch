@@ -1,0 +1,7 @@
+<resources>
+    <style name="MyButton" parent="AppTheme">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@color/common_black</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+    </style>
+</resources>
