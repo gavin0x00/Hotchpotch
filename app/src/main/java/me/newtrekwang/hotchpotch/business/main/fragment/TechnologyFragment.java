@@ -4,6 +4,7 @@ package me.newtrekwang.hotchpotch.business.main.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -61,8 +62,8 @@ public class TechnologyFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         rcTech = view.findViewById(R.id.rc_tech);
         rcTech.addItemDecoration(new CardItemDecoration());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        rcTech.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        rcTech.setLayoutManager(gridLayoutManager);
         rcTech.setAdapter(technologyListAdapter);
 
         loadTitles();
