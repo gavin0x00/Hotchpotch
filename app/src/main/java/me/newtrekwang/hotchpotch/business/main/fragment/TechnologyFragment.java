@@ -15,8 +15,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.newtrekwang.baselibrary.ui.adapter.BaseRecyclerViewAdapter;
-import me.newtrekwang.baselibrary.ui.fragment.BaseFragment;
+import me.newtrekwang.hotchpotch.uiwidget.CardItemDecoration;
+import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
+import me.newtrekwang.lib_base.ui.fragment.BaseFragment;
 import me.newtrekwang.hotchpotch.R;
 import me.newtrekwang.provider.router.RouterPath;
 
@@ -59,7 +60,7 @@ public class TechnologyFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rcTech = view.findViewById(R.id.rc_tech);
-
+        rcTech.addItemDecoration(new CardItemDecoration());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rcTech.setLayoutManager(linearLayoutManager);
         rcTech.setAdapter(technologyListAdapter);

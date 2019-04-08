@@ -1,11 +1,8 @@
 package me.newtrekwang.hotchpotch.business.main;
 
-import com.trello.rxlifecycle2.LifecycleProvider;
-
 import javax.inject.Inject;
 
-import me.newtrekwang.baselibrary.common.BaseApplication;
-import me.newtrekwang.baselibrary.presenter.BasePresenter;
+import me.newtrekwang.lib_base.presenter.BasePresenter;
 
 
 /**
@@ -18,10 +15,7 @@ import me.newtrekwang.baselibrary.presenter.BasePresenter;
 public class MainPresenter extends BasePresenter<MainMvpView> {
     @Inject
     public MainPresenter(){}
-    @Inject
-    BaseApplication baseApplication;
-    @Inject
-    LifecycleProvider lifecycleProvider;
+
 
 
 }

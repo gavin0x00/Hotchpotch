@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import me.newtrekwang.baselibrary.ui.adapter.BaseRecyclerViewAdapter;
+import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
 import me.newtrekwang.hotchpotch.R;
 
 /**

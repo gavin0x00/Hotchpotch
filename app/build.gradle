@@ -4,6 +4,11 @@ android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
 
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "me.newtrekwang.hotchpotch"
         minSdkVersion build_versions.min_sdk
@@ -17,11 +22,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-
-        compileOptions {
-            targetCompatibility JavaVersion.VERSION_1_8
-            sourceCompatibility JavaVersion.VERSION_1_8
-        }
+        vectorDrawables.useSupportLibrary = true
     }
 
     configurations.all {
@@ -38,15 +39,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":Provider")
+    implementation project(':lib_provider')
 
     // 是否组合Gank模块
     if (!debugGankModule.toBoolean()) {
-        implementation project(':gankio')
+        implementation project(':module_gankio')
     }
-
+    // 注解处理器
     // dagger2
-    implementation 'com.android.support:support-v4:28.0.0'
     annotationProcessor deps.dagger.compiler
     // aRouter
     annotationProcessor deps.arouter_compiler

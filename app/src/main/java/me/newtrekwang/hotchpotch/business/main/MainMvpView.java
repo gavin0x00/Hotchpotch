@@ -1,7 +1,7 @@
 package me.newtrekwang.hotchpotch.business.main;
 
 
-import me.newtrekwang.baselibrary.presenter.view.BaseMvpView;
+import me.newtrekwang.lib_base.presenter.view.BaseMvpView;
 
 /**
  * @author newtrekWang
