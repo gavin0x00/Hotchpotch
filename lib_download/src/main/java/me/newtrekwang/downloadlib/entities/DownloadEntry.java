@@ -113,7 +113,6 @@ public class DownloadEntry implements Serializable,Cloneable{
     }
 
 
-
     @Generated(hash = 1215366502)
     public DownloadEntry(String id, String name, String url, String fileName,
             DownloadStatus status, int totalLength, int currentLength,

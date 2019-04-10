@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@color/notification_background_color"
+    android:layout_height="64dp">
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/ic_android_black_24dp"
+        android:id="@+id/notification_download_img"
+        android:layout_height="32dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="left|center_vertical"
+            android:layout_marginTop="2dp"
+            android:text="正在下载系统升级包：xxxxxxx"
+            android:textColor="@android:color/black"
+            android:id="@+id/notification_download_tv_title"
+            android:layout_height="22dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="36%"
+                    android:textSize="12sp"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:id="@+id/notification_download_tv_progress"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:max="100"
+                    android:progress="20"
+                    android:id="@+id/notification_download_progressbar"
+                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_height="18dp" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="80dp"
+                android:text="查看"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColor="@android:color/white"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

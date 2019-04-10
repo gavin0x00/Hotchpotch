@@ -14,6 +14,7 @@ import java.io.File;
  */
 public final class Constants {
     /**
+     * todo 目录是定死的，后面需要添加个可配置下载目录接口
      * 默认下载文件存放目录
      */
     public static String DOWN_LOAD_DIR_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ File.separator;
