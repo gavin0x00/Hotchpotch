@@ -147,6 +147,7 @@ deps.junit = "junit:junit:$versions.junit"
 // ARouter
 deps.arouter = "com.alibaba:arouter-api:$versions.arouter"
 deps.arouter_compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+
 // retrofit
 deps.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
 deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
@@ -177,10 +178,6 @@ deps.bugly = "com.tencent.bugly:crashreport:$versions.bugly"
 // stetho
 deps.stetho_okhttp3 = "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
 deps.stetho = "com.facebook.stetho:stetho:$versions.stetho"
-
-// aRouter
-deps.arouter_api = "com.alibaba:arouter-api:$versions.arouter_api"
-deps.arouter_compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
 
 // fastjson
 deps.fastjson = "com.alibaba:fastjson:$versions.fastjson"

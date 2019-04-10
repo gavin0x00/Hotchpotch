@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download_error">下载出错，请重试</string>
+    <string name="timeout_pause">连接超时，请重试！</string>
+    <string name="already_pause">已暂停</string>
+    <string name="no_network">下载失败，网络不可用</string>
+</resources>

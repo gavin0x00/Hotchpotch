@@ -1,0 +1,6 @@
+<resources>
+    <string name="download_error">An Error Has Occurred On Downloading , Please Try Again</string>
+    <string name="timeout_pause">Link Time Out , Please Try Again </string>
+    <string name="already_pause">Already Pause </string>
+    <string name="no_network">Download Fail , No Network</string>
+</resources>
