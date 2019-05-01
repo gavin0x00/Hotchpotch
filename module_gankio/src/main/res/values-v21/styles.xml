@@ -1,5 +1,6 @@
 <resources>
     <style name="MyButton" parent="AppTheme">
+        <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="android:textColor">@color/common_black</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>

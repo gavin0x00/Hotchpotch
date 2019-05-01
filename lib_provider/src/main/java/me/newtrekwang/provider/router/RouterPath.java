@@ -35,17 +35,26 @@ public final class RouterPath {
         /**
          * 技术干货首页碎片
          */
-        public static final String PATH_TECH = "/TechMain/main";
+        public static final String PATH_TECH = "/Tech/main";
 
 /************************************************ GankIO start ***********************************************************************/
+        private static final String GANKIO = "/Tech/GankIO/";
         /**
          * GankIO 首页
          */
-        public static final String PATH_TECH_GANK_IO_MAIN = "/TechMain/GankIOMain";
+        public static final String PATH_TECH_GANK_IO_MAIN = GANKIO+"GankIOMain";
         /**
-         *  GankIO 最近界面
+         *  GankIO 最新
          */
-        public static final String PATH_TECH_GANK_IO_RECENTLY = "/TechMain/GankIORecently";
+        public static final String PATH_TECH_GANK_IO_RECENTLY = GANKIO+"GankIORecently";
+        /**
+         * GankIO 分类
+         */
+        public static final String PATH_TECH_GANK_IO_CLASSIFY = GANKIO+"Classify";
+        /**
+         * GankIO 妹纸
+         */
+        public static final String PATH_TECH_GANK_IO_NEIZHI = GANKIO+"Meizhi";
 
 /************************************************ GankIO end ***********************************************************************/
 

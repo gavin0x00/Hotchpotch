@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@style/MyButton"
     tools:context=".business.main.GankIOMainActivity">
-<Button
-    android:layout_width="match_parent"
-    android:text="测试按钮"
-    android:layout_margin="4dp"
-    style="@style/Widget.AppCompat.Button"
-    android:layout_height="100dp" />
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/gankio_main_fy_container"
+            android:layout_height="wrap_content"/>
+        <View style="@style/DividerFixedHeight"/>
+        <android.support.design.widget.BottomNavigationView
+            android:layout_width="match_parent"
+            android:id="@+id/gankio_main_bottom_nv"
+            app:menu="@menu/gankio_main_bottom_nav_memu"
+            android:layout_height="@dimen/common_bottom_nav_height"/>
 </LinearLayout>
