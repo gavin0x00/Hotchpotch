@@ -99,7 +99,7 @@ public class GankIOMainActivity extends AppCompatActivity {
             }
         });
 
-        changeToFragment(mClassifyFragment);
+        changeToFragment(mRecentlyNewsFragment);
     }
 
     @Override
