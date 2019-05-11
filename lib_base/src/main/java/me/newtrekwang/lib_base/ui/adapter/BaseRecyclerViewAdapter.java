@@ -59,8 +59,6 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull VH holder,final int position) {
-        //		坑点：布局文件宽度设置match_parent不生效，这里加下就可以
-       // holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
