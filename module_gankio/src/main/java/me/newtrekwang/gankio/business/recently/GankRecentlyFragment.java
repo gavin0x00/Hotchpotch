@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.provider.router.RouterPath;
@@ -60,6 +62,15 @@ public class GankRecentlyFragment extends Fragment {
         tvDate = view.findViewById(R.id.gankio_recently_tv_date);
         rcNews = view.findViewById(R.id.gankio_recently_rc);
 
+        initView();
+    }
 
+    private void initView() {
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+            }
+        });
     }
 }
