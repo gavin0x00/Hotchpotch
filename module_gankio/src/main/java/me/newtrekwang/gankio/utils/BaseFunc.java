@@ -16,6 +16,6 @@ import me.newtrekwang.lib_base.utils.ExceptionHandle;
 public class BaseFunc<T> implements Function<GankIOBaseResp<T>, Observable<T>> {
     @Override
     public Observable<T> apply(GankIOBaseResp<T> tGankIOBaseResp) throws Exception {
-        return tGankIOBaseResp.isError()?Observable.just(tGankIOBaseResp.getResults()):Observable.error(new ExceptionHandle.ResponseException(new Throwable("error"), ExceptionHandle.ERROR.CUSTOM_ERROR));
+        return tGankIOBaseResp.isError()?Observable.error(new ExceptionHandle.ResponseException(new Throwable("error"), ExceptionHandle.ERROR.CUSTOM_ERROR)):Observable.just(tGankIOBaseResp.getResults());
     }
 }

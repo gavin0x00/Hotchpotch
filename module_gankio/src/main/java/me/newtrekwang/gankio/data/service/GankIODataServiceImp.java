@@ -44,7 +44,7 @@ public class GankIODataServiceImp implements GankIODataService {
         return gankIORepository.getDailyData(year, month, day).flatMap(new Function<GankIOBaseResp<String>, Observable<GankIOBaseResp<String>>>() {
             @Override
             public Observable<GankIOBaseResp<String>> apply(GankIOBaseResp<String> stringGankIOBaseResp) throws Exception {
-                return stringGankIOBaseResp.isError()?Observable.just(stringGankIOBaseResp):Observable.error(new ExceptionHandle.ResponseException(new Throwable("error"), ExceptionHandle.ERROR.CUSTOM_ERROR));
+                return stringGankIOBaseResp.isError()?Observable.error(new ExceptionHandle.ResponseException(new Throwable("error"), ExceptionHandle.ERROR.CUSTOM_ERROR)):Observable.just(stringGankIOBaseResp);
             }
         });
     }

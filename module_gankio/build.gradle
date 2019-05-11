@@ -66,6 +66,8 @@ dependencies {
     implementation project(':lib_provider')
     // smartRefreshLayout
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-24'
+    // 多状态视图
+    implementation 'com.classic.common:multiple-status-view:1.6'
     // dagger2
     annotationProcessor deps.dagger.compiler
     // aRouter

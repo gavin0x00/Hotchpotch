@@ -1,6 +1,9 @@
 package me.newtrekwang.gankio.inject;
 
 import dagger.Module;
+import dagger.Provides;
+import me.newtrekwang.gankio.data.service.GankIODataService;
+import me.newtrekwang.gankio.data.service.GankIODataServiceImp;
 
 /**
  * @className GankIOModule
@@ -12,5 +15,14 @@ import dagger.Module;
  */
 @Module
 public class GankIOModule {
+    /**
+     * 提供GankIO 数据服务实例
+     * @param dataServiceImp
+     * @return
+     */
+    @Provides
+    public GankIODataService provideGankIoDataService(GankIODataServiceImp dataServiceImp){
+        return dataServiceImp;
+    }
 
 }

@@ -21,7 +21,7 @@ public interface GankIOApi {
      * 获取所有历史日期
      * @return
      */
-    @GET(Constants.GANKIO_URL_BASE+"/day/history")
+    @GET(Constants.GANKIO_URL_BASE+"day/history")
     Observable<GankIOBaseResp<List<String>>>  getHistoryDateList();
 
     /**
@@ -31,6 +31,6 @@ public interface GankIOApi {
      * @param day
      * @return
      */
-    @GET(Constants.GANKIO_URL_BASE+"/day/{year}/{month}/{day}")
+    @GET(Constants.GANKIO_URL_BASE+"day/{year}/{month}/{day}")
     Observable<GankIOBaseResp<String>> getDailyData(@Path("year") int year,@Path("month") int month,@Path("day") int day);
 }

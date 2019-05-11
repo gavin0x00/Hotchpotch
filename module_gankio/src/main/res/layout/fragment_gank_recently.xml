@@ -1,57 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<android.support.design.widget.AppBarLayout
-    android:layout_width="match_parent"
-    android:layout_height="60dp">
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:orientation="horizontal"
-       android:layout_height="match_parent">
-      <ImageView
-          android:layout_width="60dp"
-          app:srcCompat="@drawable/ic_date"
-          android:scaleType="center"
-          android:id="@+id/gankio_recently_img_date"
-          android:layout_height="match_parent" />
-      <TextView
-          android:layout_width="wrap_content"
-          android:text="2019-05-09"
-          android:layout_weight="1"
-          android:id="@+id/gankio_recently_tv_date"
-          android:gravity="center"
-          android:textSize="@dimen/common_text_middle"
-          android:textColor="@color/common_white"
-          android:layout_height="match_parent" />
-      <ImageView
-          android:layout_width="60dp"
-          app:srcCompat="@drawable/ic_search"
-          android:scaleType="center"
-          android:id="@+id/gankio_recently_img_search"
-          android:layout_height="match_parent" />
-   </LinearLayout>
-</android.support.design.widget.AppBarLayout>
-   <com.scwang.smartrefresh.layout.SmartRefreshLayout
-       android:layout_width="match_parent"
-       android:id="@+id/gankio_recently_smartRefreshLayout"
-       android:layout_height="match_parent">
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:orientation="vertical"
-          android:layout_height="match_parent">
-         <ImageView
-             android:layout_width="match_parent"
-             android:id="@+id/gankio_recently_img_meizhi"
-             android:scaleType="fitXY"
-             app:srcCompat="@drawable/ic_launcher_background"
-             android:layout_height="180dp" />
-         <android.support.v7.widget.RecyclerView
-             android:layout_width="match_parent"
-             android:id="@+id/gankio_recently_rc"
-             android:layout_height="match_parent"/>
-      </LinearLayout>
-   </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/gankio_recently_img_date"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_date" />
+
+            <TextView
+                android:id="@+id/gankio_recently_tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2019-05-09"
+                android:textColor="@color/common_white"
+                android:textSize="@dimen/common_text_middle" />
+
+            <ImageView
+                android:id="@+id/gankio_recently_img_search"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_search" />
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <com.classic.common.MultipleStatusView
+        android:layout_width="match_parent"
+        android:id="@+id/gankio_recently_multipleStatusView"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/gankio_recently_smartRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gankio_recently_img_meizhi"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/ic_launcher_background" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/gankio_recently_rc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            <me.newtrekwang.gankio.widgets.UMExpandLayout
+                android:id="@+id/gankio_recently_expandLayout_date"
+                android:background="@color/common_white"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/gankio_recently_rc_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </me.newtrekwang.gankio.widgets.UMExpandLayout>
+        </FrameLayout>
+    </com.classic.common.MultipleStatusView>
+
+
 </LinearLayout>
