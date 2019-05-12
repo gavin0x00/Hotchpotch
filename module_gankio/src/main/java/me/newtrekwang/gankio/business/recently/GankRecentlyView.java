@@ -17,4 +17,20 @@ public interface GankRecentlyView extends BaseMvpView {
      * @param dateList
      */
     void showDateList(List<String> dateList);
+
+    /**
+     * 隐藏下拉刷新动画
+     */
+    void hidePullDownRefresh();
+
+    /**
+     * 显示下拉刷新动画
+     */
+    void showPullDownRefresh();
+
+    /**
+     * 显示福利图
+     * @param url
+     */
+    void showMeiZhiImg(String url);
 }

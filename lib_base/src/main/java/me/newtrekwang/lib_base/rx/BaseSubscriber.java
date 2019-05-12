@@ -27,7 +27,7 @@ public abstract class BaseSubscriber<T> implements Observer<T> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void       onError(Throwable e) {
         // 关闭loading
         baseMvpView.hideLoading();
         // 异常处理

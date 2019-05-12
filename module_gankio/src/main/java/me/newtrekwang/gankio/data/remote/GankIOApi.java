@@ -1,10 +1,12 @@
 package me.newtrekwang.gankio.data.remote;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import me.newtrekwang.gankio.common.Constants;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -32,5 +34,5 @@ public interface GankIOApi {
      * @return
      */
     @GET(Constants.GANKIO_URL_BASE+"day/{year}/{month}/{day}")
-    Observable<GankIOBaseResp<String>> getDailyData(@Path("year") int year,@Path("month") int month,@Path("day") int day);
+    Observable<GankIOBaseResp<Map<String,List<NewsItem>>>> getDailyData(@Path("year") int year, @Path("month") int month, @Path("day") int day);
 }

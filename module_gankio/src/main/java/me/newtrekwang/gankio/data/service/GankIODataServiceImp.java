@@ -1,12 +1,14 @@
 package me.newtrekwang.gankio.data.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.data.remote.GankIORepository;
 import me.newtrekwang.gankio.utils.BaseFunc;
 import me.newtrekwang.lib_base.utils.ExceptionHandle;
@@ -40,10 +42,10 @@ public class GankIODataServiceImp implements GankIODataService {
      * @return
      */
     @Override
-    public Observable<GankIOBaseResp<String>> getDailyData(int year, int month, int day) {
-        return gankIORepository.getDailyData(year, month, day).flatMap(new Function<GankIOBaseResp<String>, Observable<GankIOBaseResp<String>>>() {
+    public Observable<GankIOBaseResp<Map<String,List<NewsItem>>>> getDailyData(int year, int month, int day) {
+        return gankIORepository.getDailyData(year, month, day).flatMap(new Function<GankIOBaseResp<Map<String,List<NewsItem>>>, Observable<GankIOBaseResp<Map<String,List<NewsItem>>>>>() {
             @Override
-            public Observable<GankIOBaseResp<String>> apply(GankIOBaseResp<String> stringGankIOBaseResp) throws Exception {
+            public Observable<GankIOBaseResp<Map<String,List<NewsItem>>>> apply(GankIOBaseResp<Map<String,List<NewsItem>>> stringGankIOBaseResp) throws Exception {
                 return stringGankIOBaseResp.isError()?Observable.error(new ExceptionHandle.ResponseException(new Throwable("error"), ExceptionHandle.ERROR.CUSTOM_ERROR)):Observable.just(stringGankIOBaseResp);
             }
         });

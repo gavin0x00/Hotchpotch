@@ -1,9 +1,11 @@
 package me.newtrekwang.gankio.data.service;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 
 /**
  * @className GankIODataService
@@ -27,5 +29,5 @@ public interface GankIODataService {
      * @param day
      * @return
      */
-    Observable<GankIOBaseResp<String>>  getDailyData(int year,int month,int day);
+    Observable<GankIOBaseResp<Map<String,List<NewsItem>>>>  getDailyData(int year, int month, int day);
 }

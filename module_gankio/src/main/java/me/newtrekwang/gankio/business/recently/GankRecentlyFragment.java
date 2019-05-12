@@ -4,8 +4,12 @@ package me.newtrekwang.gankio.business.recently;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +20,22 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.classic.common.MultipleStatusView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
 import me.newtrekwang.gankio.widgets.UMExpandLayout;
-import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
 import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
-import me.newtrekwang.lib_base.utils.L;
+import me.newtrekwang.lib_base.utils.ImageLoaderUtils;
+import me.newtrekwang.lib_base.utils.TimeUtils;
 import me.newtrekwang.provider.router.RouterPath;
 
 
@@ -48,12 +57,10 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     private ImageView imgMeizhi;
     private SmartRefreshLayout smartRefreshLayout;
     private RecyclerView rcNews;
-    private RecyclerView rcDates;
+    private TabLayout tabLayoutDate;
     private UMExpandLayout expandLayout;
     private MultipleStatusView multipleStatusView;
-
-    private DateListAdapter dateListAdapter;
-
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
     public GankRecentlyFragment() {
         // Required empty public constructor
@@ -63,13 +70,6 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dateListAdapter = new DateListAdapter();
-        dateListAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<String>() {
-            @Override
-            public void onItemClick(String item, int position) {
-                showToast(item);
-            }
-        });
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
         smartRefreshLayout = view.findViewById(R.id.gankio_recently_smartRefreshLayout);
         tvDate = view.findViewById(R.id.gankio_recently_tv_date);
         rcNews = view.findViewById(R.id.gankio_recently_rc);
-        rcDates = view.findViewById(R.id.gankio_recently_rc_date);
+        tabLayoutDate = view.findViewById(R.id.gankio_recently_tabLayout_date);
         expandLayout = view.findViewById(R.id.gankio_recently_expandLayout_date);
         multipleStatusView = view.findViewById(R.id.gankio_recently_multipleStatusView);
 
@@ -103,23 +103,56 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     }
 
     private void initView() {
-        expandLayout.initExpand(true);
+        // 默认折叠日期
+        expandLayout.initExpand(false);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rcDates.setLayoutManager(linearLayoutManager);
-        rcDates.setAdapter(dateListAdapter);
+        // 清除所有tab
+        tabLayoutDate.removeAllTabs();
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-
+                String dateSt = tvDate.getText().toString();
+                tvDate.setText(dateSt);
+                Date date = TimeUtils.string2Date(dateSt,simpleDateFormat);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                // 请求获取该日的数据
+                if (date != null){
+                    mPresenter.getDailyData(cal.get(Calendar.YEAR),(cal.get(Calendar.MONTH)+1),cal.get(Calendar.DAY_OF_MONTH));
+                }
             }
         });
         imgDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 expandLayout.toggleExpand();
+            }
+        });
+        tabLayoutDate.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                String dateSt = tab.getText().toString();
+                tvDate.setText(dateSt);
+                Date date = TimeUtils.string2Date(dateSt,simpleDateFormat);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                // 请求获取该日的数据
+                if (date != null){
+                    mPresenter.getDailyData(cal.get(Calendar.YEAR),(cal.get(Calendar.MONTH)+1),cal.get(Calendar.DAY_OF_MONTH));
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
     }
@@ -146,7 +179,34 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
 
     @Override
     public void showDateList(List<String> dateList) {
-        L.d(TAG,"日期数据："+dateList);
-        dateListAdapter.setData(dateList);
+        tabLayoutDate.removeAllTabs();
+        for (int i=0;i<dateList.size();i++){
+            String dateSt = dateList.get(i);
+            SpannableString spannableString = new SpannableString(dateSt);
+            RelativeSizeSpan sizeSpan01 = new RelativeSizeSpan(0.8f);
+            RelativeSizeSpan sizeSpan02 = new RelativeSizeSpan(1.2f);
+            spannableString.setSpan(sizeSpan01,0,8, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(sizeSpan02,8,10, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            TabLayout.Tab tabItem = tabLayoutDate.newTab().setText(spannableString);
+            tabLayoutDate.addTab(tabItem);
+        }
+    }
+
+    @Override
+    public void hidePullDownRefresh() {
+        smartRefreshLayout.finishRefresh(true);
+    }
+
+    @Override
+    public void showPullDownRefresh() {
+        boolean refreshing = smartRefreshLayout.getState() == RefreshState.Refreshing;
+        if (!refreshing){
+            smartRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
+    public void showMeiZhiImg(String url) {
+        ImageLoaderUtils.loadImage(getActivity(),url,R.drawable.ic_launcher_background,imgMeizhi);
     }
 }

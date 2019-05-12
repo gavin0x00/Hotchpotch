@@ -7,7 +7,7 @@
     android:id="@+id/item_tv_date"
     android:gravity="center"
     android:focusable="true"
-    android:textColor="@drawable/date_item_text_color"
+    android:textColor="@color/date_item_text_color"
     android:textSize="14sp"
     android:layout_height="60dp">
 </TextView>
