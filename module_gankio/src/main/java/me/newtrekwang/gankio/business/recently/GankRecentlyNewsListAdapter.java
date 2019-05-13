@@ -1,12 +1,20 @@
 package me.newtrekwang.gankio.business.recently;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import me.newtrekwang.gankio.R;
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 
 /**
  * @className GankRecentlyNewsListAdapter
@@ -16,40 +24,135 @@ import me.newtrekwang.gankio.R;
  * @desc 二级列表适配器
  *
  */
-public class GankRecentlyNewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class GankRecentlyNewsListAdapter extends BaseExpandableListAdapter {
+    private static final String TAG = "GankRecentlyNewsListAda";
+    private LayoutInflater layoutInflater;
+    private List<String> groupTitles ;
+    private Map<String, List<NewsItem>> subItemsMap;
 
-
-
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+    public GankRecentlyNewsListAdapter(Context context) {
+        this.layoutInflater = LayoutInflater.from(context);
+        groupTitles = new ArrayList<>();
+        subItemsMap = new HashMap<>(5);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
+    public int getGroupCount() {
+        return groupTitles==null?0:groupTitles.size();
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getChildrenCount(int groupPosition) {
+        List<NewsItem>  subItems = subItemsMap.get(groupTitles.get(groupPosition));
+        return subItems==null?0:subItems.size();
+    }
+
+    @Override
+    public Object getGroup(int groupPosition) {
+        return groupTitles==null?null:groupTitles.get(groupPosition);
+    }
+
+    @Override
+    public Object getChild(int groupPosition, int childPosition) {
+        List<NewsItem>  subItems = subItemsMap.get(groupTitles.get(groupPosition));
+        return subItems==null?null:subItems.get(childPosition);
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        GroupItemViewHolder groupItemViewHolder;
+        if (convertView == null){
+            View groupItemView = layoutInflater.inflate(R.layout.item_gank_io_news_group,parent,false);
+            groupItemViewHolder = new GroupItemViewHolder(groupItemView);
+            convertView = groupItemView;
+            groupItemView.setTag(groupItemViewHolder);
+        }else {
+            groupItemViewHolder = (GroupItemViewHolder) convertView.getTag();
+        }
+        // 组名
+        String title = groupTitles.get(groupPosition);
+        groupItemViewHolder.tvGroupTitle.setText(TextUtils.isEmpty(title)?"null":title);
+        return convertView;
+    }
+
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        SubItemViewHolder subItemViewHolder;
+        if (convertView == null){
+            View subItemView = layoutInflater.inflate(R.layout.item_gank_io_news_sub,parent,false);
+            subItemViewHolder = new SubItemViewHolder(subItemView);
+            convertView = subItemView;
+            convertView.setTag(subItemViewHolder);
+        }else {
+            subItemViewHolder = (SubItemViewHolder) convertView.getTag();
+        }
+
+        List<NewsItem> newsItems = subItemsMap.get(groupTitles.get(groupPosition));
+        NewsItem item = newsItems.get(childPosition);
+        subItemViewHolder.tvAuther.setText(item.getWho());
+        subItemViewHolder.tvSubTitle.setText(item.getDesc());
+        subItemViewHolder.tvTime.setText(item.getPublishedAt());
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
+    public Map<String, List<NewsItem>> getSubItemsMap() {
+        return subItemsMap;
+    }
+
+    public List<String> getGroupTitles() {
+        return groupTitles;
+    }
+
+    /**
+     * 设置列表数据
+     * @param groupTitles 组名列表
+     * @param subItemsMap 小组Map
+     */
+    public void setData(List<String> groupTitles,Map<String,List<NewsItem>> subItemsMap){
+        this.groupTitles.clear();
+        this.subItemsMap.clear();
+        this.groupTitles.addAll(groupTitles);
+        this.subItemsMap.putAll(subItemsMap);
+        this.notifyDataSetChanged();
     }
 
 
-    public static class GroupItemViewHolder extends RecyclerView.ViewHolder{
+
+    public static class GroupItemViewHolder {
+        public View itemView;
         public TextView tvGroupTitle;
 
-        public GroupItemViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public GroupItemViewHolder(View itemView) {
+            itemView = itemView;
             tvGroupTitle = itemView.findViewById(R.id.gankio_recently_item_tv_group_title);
         }
     }
 
-    public static class SubItemViewHolder extends RecyclerView.ViewHolder{
+    public static class SubItemViewHolder {
+        public View itemView;
         public TextView tvSubTitle,tvAuther,tvTime;
-        public SubItemViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public SubItemViewHolder(View itemView) {
+            itemView = itemView;
             tvSubTitle = itemView.findViewById(R.id.gankio_recently_item_tv_title);
             tvAuther = itemView.findViewById(R.id.gankio_recently_item_tv_auther);
             tvTime = itemView.findViewById(R.id.gankio_recently_item_tv_date);

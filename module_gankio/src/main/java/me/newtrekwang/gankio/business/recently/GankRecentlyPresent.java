@@ -66,6 +66,7 @@ public class GankRecentlyPresent extends BasePresenter<GankRecentlyView> {
                         mView.showMeiZhiImg(imgUrl);
                     }
                 }
+                mView.showNewsList(stringGankIOBaseResp.getCategory(),stringGankIOBaseResp.getResults());
             }
 
             @Override

@@ -1,7 +1,9 @@
 package me.newtrekwang.gankio.business.recently;
 
 import java.util.List;
+import java.util.Map;
 
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.lib_base.presenter.view.BaseMvpView;
 /**
  * @className GankRecentlyView
@@ -33,4 +35,11 @@ public interface GankRecentlyView extends BaseMvpView {
      * @param url
      */
     void showMeiZhiImg(String url);
+
+    /**
+     * 显示新闻列表
+     * @param groupList
+     * @param subItemsMap
+     */
+    void showNewsList(List<String> groupList, Map<String,List<NewsItem>>  subItemsMap);
 }

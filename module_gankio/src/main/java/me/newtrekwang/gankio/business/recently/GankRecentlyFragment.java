@@ -6,13 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,13 +28,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import me.newtrekwang.gankio.R;
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
 import me.newtrekwang.gankio.widgets.UMExpandLayout;
 import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
 import me.newtrekwang.lib_base.utils.ImageLoaderUtils;
+import me.newtrekwang.lib_base.utils.L;
 import me.newtrekwang.lib_base.utils.TimeUtils;
 import me.newtrekwang.provider.router.RouterPath;
 
@@ -56,12 +59,12 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     private TextView tvDate;
     private ImageView imgMeizhi;
     private SmartRefreshLayout smartRefreshLayout;
-    private RecyclerView rcNews;
+    private ExpandableListView exLvNews;
     private TabLayout tabLayoutDate;
     private UMExpandLayout expandLayout;
     private MultipleStatusView multipleStatusView;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-
+    private GankRecentlyNewsListAdapter gankRecentlyNewsListAdapter;
     public GankRecentlyFragment() {
         // Required empty public constructor
     }
@@ -70,6 +73,12 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gankRecentlyNewsListAdapter = new GankRecentlyNewsListAdapter(getActivity());
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -88,7 +97,7 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
         imgMeizhi = view.findViewById(R.id.gankio_recently_img_meizhi);
         smartRefreshLayout = view.findViewById(R.id.gankio_recently_smartRefreshLayout);
         tvDate = view.findViewById(R.id.gankio_recently_tv_date);
-        rcNews = view.findViewById(R.id.gankio_recently_rc);
+        exLvNews = view.findViewById(R.id.gankio_recently_exLv);
         tabLayoutDate = view.findViewById(R.id.gankio_recently_tabLayout_date);
         expandLayout = view.findViewById(R.id.gankio_recently_expandLayout_date);
         multipleStatusView = view.findViewById(R.id.gankio_recently_multipleStatusView);
@@ -110,6 +119,7 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         // 清除所有tab
         tabLayoutDate.removeAllTabs();
+        exLvNews.setAdapter(gankRecentlyNewsListAdapter);
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -208,5 +218,11 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     @Override
     public void showMeiZhiImg(String url) {
         ImageLoaderUtils.loadImage(getActivity(),url,R.drawable.ic_launcher_background,imgMeizhi);
+    }
+
+    @Override
+    public void showNewsList(List<String> groupList, Map<String, List<NewsItem>> subItemsMap) {
+        L.d(TAG,"showNewsList>>>>>");
+        gankRecentlyNewsListAdapter.setData(groupList,subItemsMap);
     }
 }

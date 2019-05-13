@@ -62,8 +62,8 @@
                         android:layout_height="200dp"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/ic_launcher_background" />
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/gankio_recently_rc"
+                    <ExpandableListView
+                        android:id="@+id/gankio_recently_exLv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
