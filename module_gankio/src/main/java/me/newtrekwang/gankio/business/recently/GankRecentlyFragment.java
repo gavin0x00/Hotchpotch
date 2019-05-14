@@ -120,6 +120,13 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
         // 清除所有tab
         tabLayoutDate.removeAllTabs();
         exLvNews.setAdapter(gankRecentlyNewsListAdapter);
+        exLvNews.setGroupIndicator(null);
+        exLvNews.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                return true;
+            }
+        });
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -224,5 +231,8 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     public void showNewsList(List<String> groupList, Map<String, List<NewsItem>> subItemsMap) {
         L.d(TAG,"showNewsList>>>>>");
         gankRecentlyNewsListAdapter.setData(groupList,subItemsMap);
+        for (int i=0;i<groupList.size();i++){
+            exLvNews.expandGroup(i);
+        }
     }
 }
