@@ -4,7 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Locale;
 
-import me.newtrekwang.downloadlib.utils.Constants;
+import me.newtrekwang.downloadlib.utils.DownloadConstants;
 import me.newtrekwang.downloadlib.utils.Trace;
 
 /**
@@ -47,8 +47,8 @@ public class ConnectThread implements Runnable {
             connection.setRequestMethod("GET");
             connection.setRequestProperty("User-Agent","Android");
             connection.setRequestProperty("Accept-Encoding", "identity");
-            connection.setConnectTimeout(Constants.CONNECT_TIME);
-            connection.setReadTimeout(Constants.CONNECT_TIME);
+            connection.setConnectTimeout(DownloadConstants.CONNECT_TIME);
+            connection.setReadTimeout(DownloadConstants.CONNECT_TIME);
             int responseCode = connection.getResponseCode();
             int contentLength = connection.getContentLength();
             boolean isSupportRange = false;

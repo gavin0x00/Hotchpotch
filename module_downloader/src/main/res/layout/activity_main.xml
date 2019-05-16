@@ -33,4 +33,14 @@
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintTop_toTopOf="@+id/button"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 </android.support.constraint.ConstraintLayout>

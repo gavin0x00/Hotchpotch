@@ -5,7 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -28,7 +28,7 @@ import me.newtrekwang.downloadlib.R;
 import me.newtrekwang.downloadlib.db.DbController;
 import me.newtrekwang.downloadlib.entities.DownloadEntry;
 import me.newtrekwang.downloadlib.notify.DataChanger;
-import me.newtrekwang.downloadlib.utils.Constants;
+import me.newtrekwang.downloadlib.utils.DownloadConstants;
 import me.newtrekwang.downloadlib.utils.IToast;
 import me.newtrekwang.downloadlib.utils.NetUtil;
 
@@ -91,20 +91,21 @@ public class DownloadService extends Service{
             if (msg.what == SHOW_TOAST){
                 // 只显示toast
                 if (msg.getData() != null){
-                    String  message = msg.getData().getString(Constants.KEY_DOWNLOAD_MESSAGE,DownloadService.this.getApplicationContext().getResources().getString(R.string.already_pause));
+                    String  message = msg.getData().getString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,DownloadService.this.getApplicationContext().getResources().getString(R.string.already_pause));
                     IToast.showToast(message, getApplicationContext());
                 }
                 return;
             }
             DownloadEntry entry = (DownloadEntry) msg.obj;
             showNotification(entry);
+            Log.d(TAG, "handleMessage: >>>"+entry);
             switch (msg.what){
                 case STATUS_CANCELLED:
                 case STATUS_PAUSED:
                 case STATUS_COMPLETED:
                 case STATUS_ERROR:
                     if (entry.getStatus() == DownloadEntry.DownloadStatus.error && msg.getData() != null){
-                        String  message = msg.getData().getString(Constants.KEY_DOWNLOAD_MESSAGE,DownloadService.this.getApplicationContext().getResources().getString(R.string.download_error));
+                        String  message = msg.getData().getString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,DownloadService.this.getApplicationContext().getResources().getString(R.string.download_error));
                     }
                     checkNext(entry);
                     break;
@@ -118,7 +119,7 @@ public class DownloadService extends Service{
                 // 把错误的文件删除
                 entry.reset();
                 //delete file
-                String path =  Constants.DOWN_LOAD_DIR_PATH+entry.getFileName();
+                String path =  DownloadConstants.DOWN_LOAD_DIR_PATH+entry.getFileName();
                 File file = new File(path);
                 if (file.exists()){
                     file.delete();
@@ -258,14 +259,14 @@ public class DownloadService extends Service{
                     // 把错误的文件删除
                     entry.reset();
                     //delete file
-                    String path =  Constants.DOWN_LOAD_DIR_PATH+entry.getFileName();
+                    String path =  DownloadConstants.DOWN_LOAD_DIR_PATH+entry.getFileName();
                     File file = new File(path);
                     if (file.exists()){
                         file.delete();
                     }
                 }else if (entry.getStatus() == DownloadEntry.DownloadStatus.completed){
                     // 已完成但是文件不存在的
-                    String path = Constants.DOWN_LOAD_DIR_PATH+entry.getFileName();
+                    String path = DownloadConstants.DOWN_LOAD_DIR_PATH+entry.getFileName();
                     File file = new File(path);
                     if (!file.exists()){
                         entry.setStatus(DownloadEntry.DownloadStatus.idle);
@@ -289,12 +290,12 @@ public class DownloadService extends Service{
        if (intent == null){
            return super.onStartCommand(intent, flags, startId);
        }
-        DownloadEntry entry = (DownloadEntry) intent.getSerializableExtra(Constants.KEY_DOWNLOAD_ENTRY);
+        DownloadEntry entry = (DownloadEntry) intent.getSerializableExtra(DownloadConstants.KEY_DOWNLOAD_ENTRY);
        // 复用entry
        if (entry!=null && mDataChanger.containsDownloadEntry(entry.getId())){
            entry = mDataChanger.queryDownloadEntryById(entry.getId());
        }
-        int action = intent.getIntExtra(Constants.KEY_DOWNLOAD_ACTION,-1);
+        int action = intent.getIntExtra(DownloadConstants.KEY_DOWNLOAD_ACTION,-1);
         doAction(action,entry);
         return super.onStartCommand(intent, flags, startId);
     }
@@ -306,22 +307,22 @@ public class DownloadService extends Service{
      */
     private void doAction(final int action, DownloadEntry entry) {
         switch (action){
-            case Constants.KEY_DOWNLOAD_ACTION_ADD:
+            case DownloadConstants.KEY_DOWNLOAD_ACTION_ADD:
                 addDownload(entry);
                 break;
-            case Constants.KEY_DOWNLOAD_ACTION_PAUSE:
+            case DownloadConstants.KEY_DOWNLOAD_ACTION_PAUSE:
                 pauseDownload(entry);
                 break;
-             case Constants.KEY_DOWNLOAD_ACTION_RESUME:
+             case DownloadConstants.KEY_DOWNLOAD_ACTION_RESUME:
                  resumeDownload(entry);
                  break;
-             case Constants.KEY_DOWNLOAD_ACTION_CANCEL:
+             case DownloadConstants.KEY_DOWNLOAD_ACTION_CANCEL:
                  cancelDownload(entry);
                  break;
-             case Constants.KEY_DOWNLOAD_ACTION_PAUSE_ALL:
+             case DownloadConstants.KEY_DOWNLOAD_ACTION_PAUSE_ALL:
                  pauseAllDownload();
                  break;
-             case Constants.KEY_DOWNLOAD_ACTION_RESUME_ALL:
+             case DownloadConstants.KEY_DOWNLOAD_ACTION_RESUME_ALL:
                  resumeAllDownload();
                  break;
                  default:
@@ -348,7 +349,13 @@ public class DownloadService extends Service{
         while (mWaitingQueue.iterator().hasNext()){
             DownloadEntry entry = mWaitingQueue.poll();
             entry.setStatus(DownloadEntry.DownloadStatus.paused);
-            mDataChanger.postStatus(entry);
+            Message message = handler.obtainMessage();
+            message.what = STATUS_PAUSED;
+            message.obj = entry;
+            Bundle bundle = new Bundle();
+            bundle.putString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,"正常暂停下载！");
+            message.setData(bundle);
+            handler.sendMessage(message);
         }
         // 也要把等待队列中的任务暂停
         for (Map.Entry<String,DownloadTask> item : downloadTaskHashMap.entrySet()){
@@ -371,7 +378,13 @@ public class DownloadService extends Service{
             // 等待队列中的也要删除
             mWaitingQueue.remove(entry);
             entry.setStatus(DownloadEntry.DownloadStatus.cancelled);
-            mDataChanger.postStatus(entry);
+            Message message = handler.obtainMessage();
+            message.what = STATUS_CANCELLED;
+            message.obj = entry;
+            Bundle bundle = new Bundle();
+            bundle.putString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,"正常取消下载！");
+            message.setData(bundle);
+            handler.sendMessage(message);
         }
     }
 
@@ -395,7 +408,13 @@ public class DownloadService extends Service{
             // 等待队列中的也要删除
             mWaitingQueue.remove(entry);
             entry.setStatus(DownloadEntry.DownloadStatus.paused);
-            mDataChanger.postStatus(entry);
+            Message message = handler.obtainMessage();
+            message.what = STATUS_PAUSED;
+            message.obj = entry;
+            Bundle bundle = new Bundle();
+            bundle.putString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,"正常暂停！");
+            message.setData(bundle);
+            handler.sendMessage(message);
         }
     }
 
@@ -423,10 +442,16 @@ public class DownloadService extends Service{
         if (entry.getStatus()== DownloadEntry.DownloadStatus.downloading || entry.getStatus()== DownloadEntry.DownloadStatus.connecting || entry.getStatus()== DownloadEntry.DownloadStatus.waiting){
             return;
         }
-        if (downloadTaskHashMap.size() >= Constants.MAX_DOWNLOAD_TASKS){
+        if (downloadTaskHashMap.size() >= DownloadConstants.MAX_DOWNLOAD_TASKS){
             mWaitingQueue.offer(entry);
             entry.setStatus(DownloadEntry.DownloadStatus.waiting);
-            mDataChanger.postStatus(entry);
+            Message message = handler.obtainMessage();
+            message.what = STATUS_WAITING;
+            message.obj = entry;
+            Bundle bundle = new Bundle();
+            bundle.putString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,"正常等待！");
+            message.setData(bundle);
+            handler.sendMessage(message);
         }else {
             startDownload(entry);
         }

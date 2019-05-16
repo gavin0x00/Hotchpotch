@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Button btn;
     private ProgressBar progressBar;
+    private View btnCancel;
+
 
 
     private String downloadId = "douyin";
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 case paused:
                     btn.setText("继续");
                     progressBar.setVisibility(View.VISIBLE);
+                    int progress3 = (int) (downloadEntry.getCurrentLength() * 100L / downloadEntry.getTotalLength());
+                    progressBar.setProgress(progress3);
                     break;
                 case resumed:
                     btn.setText("下载中");
@@ -76,9 +80,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DownloadManager.getInstance(getApplication());
-
         btn =  findViewById(R.id.button);
+        btnCancel = findViewById(R.id.btn_cancel);
         progressBar = findViewById(R.id.progressBar);
 
 
@@ -108,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                 case paused:
                     btn.setText("继续");
                     progressBar.setVisibility(View.VISIBLE);
+                    int progress3 = (int) (downloadEntry.getCurrentLength() * 100L / downloadEntry.getTotalLength());
+                    progressBar.setProgress(progress3);
                     break;
                 case resumed:
                     btn.setText("下载中");
@@ -160,6 +165,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DownloadEntry downloadEntry = DownloadManager.getInstance(getApplication()).queryDownloadEntry(downloadId);
+                if (downloadEntry!=null){
+                    DownloadManager.getInstance(MyApplication.getBaseApplication())
+                            .cancel(downloadEntry);
+                }
             }
         });
 

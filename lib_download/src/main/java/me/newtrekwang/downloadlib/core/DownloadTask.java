@@ -1,7 +1,6 @@
 package me.newtrekwang.downloadlib.core;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -10,7 +9,7 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 
 import me.newtrekwang.downloadlib.entities.DownloadEntry;
-import me.newtrekwang.downloadlib.utils.Constants;
+import me.newtrekwang.downloadlib.utils.DownloadConstants;
 import me.newtrekwang.downloadlib.utils.Trace;
 
 /**
@@ -147,7 +146,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         message.what = status;
         message.obj = entry;
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.KEY_DOWNLOAD_MESSAGE,msg);
+        bundle.putString(DownloadConstants.KEY_DOWNLOAD_MESSAGE,msg);
         message.setData(bundle);
         mHandler.sendMessage(message);
     }
@@ -204,14 +203,14 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         entry.setStatus(DownloadEntry.DownloadStatus.downloading);
         notifyUpdate(entry,DownloadService.STATUS_DOWNLOADING,"下载中");
 
-        int block = entry.getTotalLength() / Constants.MAX_DOWNLOAD_THREADS;
+        int block = entry.getTotalLength() / DownloadConstants.MAX_DOWNLOAD_THREADS;
         int startPos = 0;
         int endPos = 0;
-        mDownloadThreads = new DownloadThread[Constants.MAX_DOWNLOAD_THREADS];
-        mDownloadStatus = new DownloadEntry.DownloadStatus[Constants.MAX_DOWNLOAD_THREADS];
-        for (int i = 0; i< Constants.MAX_DOWNLOAD_THREADS; i++){
+        mDownloadThreads = new DownloadThread[DownloadConstants.MAX_DOWNLOAD_THREADS];
+        mDownloadStatus = new DownloadEntry.DownloadStatus[DownloadConstants.MAX_DOWNLOAD_THREADS];
+        for (int i = 0; i< DownloadConstants.MAX_DOWNLOAD_THREADS; i++){
             startPos = i * block + getRange(i);
-            if (i == Constants.MAX_DOWNLOAD_THREADS -1){
+            if (i == DownloadConstants.MAX_DOWNLOAD_THREADS -1){
                 endPos = entry.getTotalLength();
             }else {
                 endPos = (i + 1) * block -1;
@@ -269,7 +268,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         entry.setCurrentLength(newCurrentLength);
 
         long stamp = System.currentTimeMillis();
-        if (stamp - lastStamp > Constants.UPDATE_TIME){
+        if (stamp - lastStamp > DownloadConstants.UPDATE_TIME){
             lastStamp = stamp;
             notifyUpdate(entry,DownloadService.STATUS_DOWNLOADING,"下载中");
         }
@@ -293,7 +292,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
             entry.setStatus(DownloadEntry.DownloadStatus.error);
             entry.reset();
             //delete file
-            String path =  Constants.DOWN_LOAD_DIR_PATH+File.separator+entry.getFileName();
+            String path =  DownloadConstants.DOWN_LOAD_DIR_PATH+File.separator+entry.getFileName();
             File file = new File(path);
             if (file.exists()){
                 file.delete();
@@ -315,7 +314,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
     public synchronized void onDownloadError(int index,String message,int code) {
         // 单个线程发生error,那么所有线程都结束，取消任务
         mDownloadStatus[index] = DownloadEntry.DownloadStatus.error;
-        if (code == Constants.CODE_UN_KNOWN_HOST_ERROR || code == Constants.CODE_OTHER_ERROR){
+        if (code == DownloadConstants.CODE_UN_KNOWN_HOST_ERROR || code == DownloadConstants.CODE_OTHER_ERROR){
             Log.e(TAG, "onDownloadError: >>"+message );
             notifyUpdate(entry,DownloadService.SHOW_TOAST,message);
         }
@@ -340,7 +339,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
     public synchronized void onDownloadPaused(int index,int code) {
         // 单个线程发生暂停,那么所有线程都该暂停
         mDownloadStatus[index] = DownloadEntry.DownloadStatus.paused;
-        if (code == Constants.CODE_TIMEOUT_PAUSE){
+        if (code == DownloadConstants.CODE_TIMEOUT_PAUSE){
             // 通知Service发个Toast提示连接超时暂停
             Log.e(TAG, "onDownloadPaused: "+index+" 连接超时，请重试！" );
             notifyUpdate(entry,DownloadService.SHOW_TOAST,"连接超时，请重试！");
@@ -376,7 +375,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         entry.reset();
 
         //delete file
-        String path = Constants.DOWN_LOAD_DIR_PATH +entry.getFileName();
+        String path = DownloadConstants.DOWN_LOAD_DIR_PATH +entry.getFileName();
         File file = new File(path);
         if (file.exists()){
             file.delete();

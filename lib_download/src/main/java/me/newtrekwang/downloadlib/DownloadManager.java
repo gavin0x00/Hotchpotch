@@ -12,7 +12,7 @@ import me.newtrekwang.downloadlib.core.DownloadService;
 import me.newtrekwang.downloadlib.entities.DownloadEntry;
 import me.newtrekwang.downloadlib.notify.DataChanger;
 import me.newtrekwang.downloadlib.notify.DataWatcher;
-import me.newtrekwang.downloadlib.utils.Constants;
+import me.newtrekwang.downloadlib.utils.DownloadConstants;
 
 /**
  * @className DownloadManager
@@ -95,8 +95,8 @@ public class DownloadManager {
             return;
         }
         Intent intent = new Intent(context,DownloadService.class);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ENTRY,entry);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ACTION,Constants.KEY_DOWNLOAD_ACTION_ADD);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ENTRY,entry);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ACTION, DownloadConstants.KEY_DOWNLOAD_ACTION_ADD);
         context.startService(intent);
     }
 
@@ -109,8 +109,8 @@ public class DownloadManager {
             return;
         }
         Intent intent = new Intent(context,DownloadService.class);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ENTRY,entry);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ACTION,Constants.KEY_DOWNLOAD_ACTION_PAUSE);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ENTRY,entry);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ACTION, DownloadConstants.KEY_DOWNLOAD_ACTION_PAUSE);
         context.startService(intent);
     }
 
@@ -123,8 +123,8 @@ public class DownloadManager {
             return;
         }
         Intent intent = new Intent(context,DownloadService.class);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ENTRY,entry);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ACTION,Constants.KEY_DOWNLOAD_ACTION_RESUME);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ENTRY,entry);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ACTION, DownloadConstants.KEY_DOWNLOAD_ACTION_RESUME);
         context.startService(intent);
     }
 
@@ -137,8 +137,8 @@ public class DownloadManager {
             return;
         }
         Intent intent = new Intent(context,DownloadService.class);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ENTRY,entry);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ACTION,Constants.KEY_DOWNLOAD_ACTION_CANCEL);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ENTRY,entry);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ACTION, DownloadConstants.KEY_DOWNLOAD_ACTION_CANCEL);
         context.startService(intent);
     }
 
@@ -150,7 +150,7 @@ public class DownloadManager {
             return;
         }
         Intent intent = new Intent(context,DownloadService.class);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ACTION,Constants.KEY_DOWNLOAD_ACTION_PAUSE_ALL);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ACTION, DownloadConstants.KEY_DOWNLOAD_ACTION_PAUSE_ALL);
         context.startService(intent);
     }
 
@@ -162,7 +162,7 @@ public class DownloadManager {
             return;
         }
         Intent intent = new Intent(context,DownloadService.class);
-        intent.putExtra(Constants.KEY_DOWNLOAD_ACTION,Constants.KEY_DOWNLOAD_ACTION_RESUME_ALL);
+        intent.putExtra(DownloadConstants.KEY_DOWNLOAD_ACTION, DownloadConstants.KEY_DOWNLOAD_ACTION_RESUME_ALL);
         context.startService(intent);
     }
 
@@ -222,7 +222,7 @@ public class DownloadManager {
     public void resetEntry(DownloadEntry downloadEntry) {
         downloadEntry.reset();
         //delete file
-        String path =  Constants.DOWN_LOAD_DIR_PATH+downloadEntry.getFileName();
+        String path =  DownloadConstants.DOWN_LOAD_DIR_PATH+downloadEntry.getFileName();
         File file = new File(path);
         if (file.exists()){
             file.delete();
@@ -235,7 +235,7 @@ public class DownloadManager {
      * @return 下载文件存放的路径
      */
     public String  getDownloadDirPath(){
-        return Constants.DOWN_LOAD_DIR_PATH;
+        return DownloadConstants.DOWN_LOAD_DIR_PATH;
     }
 
     /**
@@ -244,9 +244,9 @@ public class DownloadManager {
      */
     public void setDownloadDirPath(String dirPath){
         if (TextUtils.isEmpty(dirPath)){
-            Constants.DOWN_LOAD_DIR_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ File.separator;
+            DownloadConstants.DOWN_LOAD_DIR_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ File.separator;
         }else{
-            Constants.DOWN_LOAD_DIR_PATH = dirPath;
+            DownloadConstants.DOWN_LOAD_DIR_PATH = dirPath;
             File file  = new File(dirPath);
             if (!file.exists()){
                 file.mkdirs();

@@ -5,14 +5,14 @@ import android.os.Environment;
 import java.io.File;
 
 /**
- * @className Constants
+ * @className DownloadConstants
  * @createDate 2018/8/2 10:40
  * @author newtrekWang
  * @email 408030208@qq.com
  * @desc 配置常量，以后可优化为可配置
  *
  */
-public final class Constants {
+public final class DownloadConstants {
     /**
      * todo 目录是定死的，后面需要添加个可配置下载目录接口
      * 默认下载文件存放目录
@@ -91,5 +91,9 @@ public final class Constants {
      */
     public static final int CODE_OTHER_ERROR = 204;
 
+    /**
+     * 连接超时 重试3次
+     */
+    public static final int RETRY_CONNECT_TIME = 3;
 
 }
