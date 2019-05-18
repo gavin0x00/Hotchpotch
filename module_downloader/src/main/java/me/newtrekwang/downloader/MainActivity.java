@@ -11,6 +11,7 @@ import android.widget.Toast;
 import me.newtrekwang.downloadlib.DownloadManager;
 import me.newtrekwang.downloadlib.entities.DownloadEntry;
 import me.newtrekwang.downloadlib.notify.DataWatcher;
+import me.newtrekwang.lib_base.utils.L;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,8 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private String downloadId = "douyin";
-    private String downloadUrl = "http://b8.market.mi-img.com/download/AppStore/0ab80511fa22ead0bfc519445aad836998b413258/com.ss.android.ugc.aweme.apk";
+    private String downloadId = "123456789";
+    private String downloadUrl = "http://ota.oss.ai.flyaudio.cn/DIFF/G8III/CHN_CT_TXZ_960_BC8/6.0.0/alpha/alpha-20190518_1257/flyupdate-G8III-CHN_CT_TXZ_960_BC8-6.0.0-alpha-mid-diff-20190518_1257-20190517_1415.fup";
+
+//    private String fileNameTemp = "douyin.apk";
+//    private String taskNameTemp = "douyin";
+    private String fileNameTemp = "alpha-20190518_1257/flyupdate-G8III-CHN_CT_TXZ_960_BC8-6.0.0-alpha-mid-diff-20190518_1257-20190517_1415.fup";
+    private String taskNameTemp = "20190518_1257-20190517_1415";
+
+
+//    private String downloadId = "1234567810";
+//    private String downloadUrl = "http://app.mi.com/download/431355?id=com.ss.android.ugc.aweme&ref=appstore.mobile_download&nonce=-3817812633743613984%3A25969450&appClientId=2882303761517485445&appSignature=j-aAUOWxrMC1HZr0LFRkPNQio03HmV7kncBVJhZgO7E";
 
 
     private DataWatcher dataWatcher = new DataWatcher() {
@@ -68,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 case completed:
                     btn.setText("完成");
                     progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(100);
                     break;
                     default:
                         break;
@@ -129,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 case completed:
                     btn.setText("完成");
                     progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(100);
                     break;
                     default:
                         break;
@@ -142,8 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 if (btnText.equals("下载")){
                     DownloadEntry downloadEntry = DownloadManager.getInstance(getApplication()).queryDownloadEntry(downloadId);
                     if (downloadEntry == null){
-                        String fileName = "douyin.apk";
-                        downloadEntry = new DownloadEntry(downloadUrl,downloadId,"douyinApk",fileName);
+                        downloadEntry = new DownloadEntry(downloadUrl,downloadId,taskNameTemp,fileNameTemp);
                         downloadEntry.setStatus(DownloadEntry.DownloadStatus.idle);
                         DownloadManager.getInstance(getApplication()).saveDownloadEntry(downloadEntry);
                     }

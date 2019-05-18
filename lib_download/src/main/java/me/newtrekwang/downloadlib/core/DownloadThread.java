@@ -93,7 +93,7 @@ public class DownloadThread implements Runnable{
     /**
      * 开始执行请求
      */
-    private void startRequst(){
+    private void startRequst(int tempStartPos,int tempEndPos){
         retryTime--;
         status = DownloadEntry.DownloadStatus.downloading;
         HttpURLConnection connection = null;
@@ -105,9 +105,9 @@ public class DownloadThread implements Runnable{
             if (!isSingleDownload){
                 if (index == (DownloadConstants.MAX_DOWNLOAD_THREADS-1)){
                     // 有的文件服务器巨坑，最后一节不加endPos才给它返回最后一段，否则给你返回总长度的内容
-                    connection.setRequestProperty("Range","bytes="+startPos+"-");
+                    connection.setRequestProperty("Range","bytes="+tempStartPos+"-");
                 }else {
-                    connection.setRequestProperty("Range","bytes="+startPos+"-"+endPos);
+                    connection.setRequestProperty("Range","bytes="+tempStartPos+"-"+tempEndPos);
                 }
             }
             connection.setConnectTimeout(DownloadConstants.CONNECT_TIME);
@@ -124,7 +124,7 @@ public class DownloadThread implements Runnable{
             OutputStream out = null;
             if (responseCode == HttpURLConnection.HTTP_PARTIAL || responseCode == HttpURLConnection.HTTP_OK){
                 raf = new RandomAccessFile(file,"rwd");
-                raf.seek(startPos);
+                raf.seek(tempStartPos);
                 is = connection.getInputStream();
                 byte[] buffer= new byte[2048];
                 int len = -1;
@@ -133,6 +133,10 @@ public class DownloadThread implements Runnable{
                         break;
                     }
                     raf.write(buffer,0,len);
+                    if (!isSingleDownload){
+                        // 注意单线程下载不支持断点续传
+                        startPos+=len;
+                    }
                     downloadListener.onProgressChanged(index,len);
                 }
                 raf.close();
@@ -181,24 +185,28 @@ public class DownloadThread implements Runnable{
                     downloadListener.onDownloadError(index,"An Error Has Occurred On Downloading , Please Try Again", DownloadConstants.CODE_NORMAL_ERROR);
                 }
             }else if (e instanceof SocketException || e instanceof SocketTimeoutException){
-                if (retryTime >= 0 ){
+                if (!isSingleDownload && retryTime >= 0 ){
+                    // 注意单线程下载不支持断点续传
                     Log.d(TAG, "线程"+index+" 重试请求："+retryTime);
-                    startRequst();
+                    startRequst(startPos,endPos);
+                }else if (isSingleDownload){
+                    status = DownloadEntry.DownloadStatus.cancelled;
+                    downloadListener.onDownloadCancelled(index);
                 }else{
                     status = DownloadEntry.DownloadStatus.paused;
                     downloadListener.onDownloadPaused(index, DownloadConstants.CODE_TIMEOUT_PAUSE);
                 }
             } else if (e instanceof UnknownHostException){
-                if (retryTime >= 0){
+                // 注意单线程下载不支持断点续传
+                if (!isSingleDownload && retryTime >= 0){
                     Log.d(TAG, "线程"+index+" 重试请求："+retryTime);
-                    startRequst();
-                }else {
+                    startRequst(startPos,endPos);
+                }else if (isSingleDownload){
+                    status = DownloadEntry.DownloadStatus.cancelled;
+                    downloadListener.onDownloadCancelled(index);
+                }else{
                     status = DownloadEntry.DownloadStatus.paused;
-                    if (Locale.getDefault().getLanguage().equals("zh")){
-                        downloadListener.onDownloadPaused(index,DownloadConstants.CODE_UN_KNOWN_HOST_ERROR);
-                    }else{
-                        downloadListener.onDownloadPaused(index, DownloadConstants.CODE_UN_KNOWN_HOST_ERROR);
-                    }
+                    downloadListener.onDownloadPaused(index, DownloadConstants.CODE_TIMEOUT_PAUSE);
                 }
             }else{
                 // 其它异常
@@ -214,7 +222,7 @@ public class DownloadThread implements Runnable{
 
     @Override
     public void run() {
-        startRequst();
+        startRequst(startPos,endPos);
     }
 
     public void pause() {
