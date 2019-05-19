@@ -30,4 +30,12 @@ public interface GankIODataService {
      * @return
      */
     Observable<GankIOBaseResp<Map<String,List<NewsItem>>>>  getDailyData(int year, int month, int day);
+
+    /**
+     * 请求某分类下指定页的列表
+     * @param title
+     * @param page
+     * @return
+     */
+    Observable<List<NewsItem>>  getNewsData(String title,int page);
 }

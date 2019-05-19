@@ -34,13 +34,6 @@ public class GankIODataServiceImp implements GankIODataService {
         return gankIORepository.getHistoryDateList().flatMap(new BaseFunc<>());
     }
 
-    /**
-     * 因为返回的json结果需要灵活解析的，所以将result直接返回String字符串，放在下一层去处理
-     * @param year
-     * @param month
-     * @param day
-     * @return
-     */
     @Override
     public Observable<GankIOBaseResp<Map<String,List<NewsItem>>>> getDailyData(int year, int month, int day) {
         return gankIORepository.getDailyData(year, month, day).flatMap(new Function<GankIOBaseResp<Map<String,List<NewsItem>>>, Observable<GankIOBaseResp<Map<String,List<NewsItem>>>>>() {
@@ -49,5 +42,10 @@ public class GankIODataServiceImp implements GankIODataService {
                 return stringGankIOBaseResp.isError()?Observable.error(new ExceptionHandle.ResponseException(new Throwable("error"), ExceptionHandle.ERROR.CUSTOM_ERROR)):Observable.just(stringGankIOBaseResp);
             }
         });
+    }
+
+    @Override
+    public Observable<List<NewsItem>> getNewsData(String title, int page) {
+        return gankIORepository.getNewsItemList(title, page).flatMap(new BaseFunc<>());
     }
 }

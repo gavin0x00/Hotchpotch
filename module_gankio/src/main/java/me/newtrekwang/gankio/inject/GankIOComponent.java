@@ -1,6 +1,7 @@
 package me.newtrekwang.gankio.inject;
 
 import dagger.Component;
+import me.newtrekwang.gankio.business.classify.GankIOClassifyPagerFragment;
 import me.newtrekwang.gankio.business.recently.GankRecentlyFragment;
 import me.newtrekwang.lib_base.injection.PerComponentScope;
 import me.newtrekwang.lib_base.injection.component.ActivityComponent;
@@ -15,9 +16,6 @@ import me.newtrekwang.lib_base.injection.component.ActivityComponent;
 @PerComponentScope
 @Component(dependencies = {ActivityComponent.class},modules = {GankIOModule.class})
 public interface GankIOComponent {
-        /**
-         * 注入gankRecentlyFragment
-         * @param gankRecentlyFragment
-         */
         void inject(GankRecentlyFragment gankRecentlyFragment);
+        void inject(GankIOClassifyPagerFragment gankIOClassifyPagerFragment);
 }

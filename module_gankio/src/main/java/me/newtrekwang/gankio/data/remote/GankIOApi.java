@@ -35,4 +35,13 @@ public interface GankIOApi {
      */
     @GET(Constants.GANKIO_URL_BASE+"day/{year}/{month}/{day}")
     Observable<GankIOBaseResp<Map<String,List<NewsItem>>>> getDailyData(@Path("year") int year, @Path("month") int month, @Path("day") int day);
+
+    /**
+     * 请求某分类下指定页的列表
+     * @param title
+     * @param page
+     * @return
+     */
+    @GET(Constants.GANKIO_URL_BASE+"search/query/listview/category/{title}/count/10/page/{page}")
+    Observable<GankIOBaseResp<List<NewsItem>>>  getNewsItemList(@Path("title") String title,@Path("page") int page);
 }

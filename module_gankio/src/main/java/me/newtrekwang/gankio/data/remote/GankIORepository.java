@@ -43,4 +43,15 @@ public class GankIORepository {
                 .create(GankIOApi.class)
                 .getDailyData(year, month, day);
     }
+    /**
+     * 请求某分类下指定页的列表
+     * @param title
+     * @param page
+     * @return
+     */
+    public Observable<GankIOBaseResp<List<NewsItem>>>  getNewsItemList(String title, int page){
+        return RetrofitFactory.getRetrofit()
+                .create(GankIOApi.class)
+                .getNewsItemList(title, page);
+    }
 }

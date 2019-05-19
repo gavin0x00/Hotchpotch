@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".business.classify.GankIOClassifyFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="GankIO 分类" />
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context=".business.classify.GankIOClassifyFragment">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/gankio_classify_img_search"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:layout_gravity="right"
+                app:srcCompat="@drawable/ic_search" />
+        </android.support.design.widget.AppBarLayout>
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:id="@+id/gankio_classify_tabLayout_classify"
+            app:tabTextColor="@color/colorPrimary"
+            app:tabMode="scrollable"
+            android:background="@color/common_white"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            android:layout_height="60dp">
+        </android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/gankio_classify_vp_content"
+            android:layout_height="0dp"/>
+</LinearLayout>
 
-</FrameLayout>
