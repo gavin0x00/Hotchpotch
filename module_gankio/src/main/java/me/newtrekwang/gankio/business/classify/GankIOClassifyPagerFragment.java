@@ -160,7 +160,7 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
 
     @Override
     public void showPageOneData(List<NewsItem> newsItems) {
-        if (newsItems != null && newsItems.size() == 10){
+        if (newsItems != null && newsItems.size() != 0){
             page++;
         }
         if (newsItems != null){
@@ -170,7 +170,7 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
 
     @Override
     public void showPullUpData(List<NewsItem> newsItems) {
-        if (newsItems != null && newsItems.size() == 10){
+        if (newsItems != null && newsItems.size() != 0){
             page++;
         }
         if (newsItems != null){
