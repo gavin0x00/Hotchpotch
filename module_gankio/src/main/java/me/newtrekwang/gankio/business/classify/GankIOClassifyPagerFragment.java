@@ -23,6 +23,7 @@ import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
 import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
 import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
+import me.newtrekwang.lib_base.utils.L;
 
 /**
  * @className GankIOClassifyPagerFragment
@@ -33,6 +34,7 @@ import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
  *
  */
 public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyPagerPresenter> implements GankIOClassifyPagerView {
+    private static final String TAG = "GankIOClassifyPagerFrag>>>>";
     private static final String KEY_CLASSIFY_TITLE = "key_classify_title";
     private SmartRefreshLayout smartRefreshLayout;
     private RecyclerView recyclerView;
@@ -40,7 +42,18 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
     private GankIOClassifyPagerContentAdapter gankIOClassifyPagerContentAdapter;
 
     private int page;
-
+    /**
+     * 界面是否已创建完成
+     */
+    private boolean isViewCreated = false;
+    /**
+     * 是否对用户可见
+     */
+    private boolean isVisibleToUser = false;
+    /**
+     * 数据是否已请求
+     */
+    private boolean isDataLoaded = false;
     /**
      * 返回一个碎片实例
      * @param title 标题
@@ -54,6 +67,32 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
         return gankIOClassifyPagerFragment;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        tryLoadData();
+    }
+
+    /**
+     * 尝试懒加载数据
+     */
+    private void tryLoadData() {
+        L.d(TAG,"isViewCreated: "+isViewCreated+"  isVisibleToUser: "+isVisibleToUser+"  isDataLoaded: "+isDataLoaded);
+        if (isViewCreated && isVisibleToUser && !isDataLoaded){
+            initData();
+            isDataLoaded = true;
+        }
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        L.d(TAG,"titile: "+title+"  initData>>>>");
+        page = 1;
+        mPresenter.getContent(title,1);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +123,7 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        L.d(TAG,"titile: "+title+"  onViewCreated>>>>");
         recyclerView = view.findViewById(R.id.gankio_classify_pager_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         smartRefreshLayout = view.findViewById(R.id.gankio_classify_pager_smartRefreshLayout);
@@ -114,8 +154,8 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
         }
         recyclerView.setAdapter(gankIOClassifyPagerContentAdapter);
 
-        page = 1;
-        mPresenter.getContent(title,1);
+        isViewCreated = true;
+        tryLoadData();
     }
 
     public String getTitle(){
