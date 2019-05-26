@@ -55,6 +55,10 @@ public final class RouterPath {
          * GankIO 妹纸
          */
         public static final String PATH_TECH_GANK_IO_NEIZHI = GANKIO+"Meizhi";
+        /**
+         * web H5浏览
+         */
+        public static final String PATH_TECH_GANK_IO_WEB_H5 = GANKIO+"WebBrowser";
 
 /************************************************ GankIO end ***********************************************************************/
 

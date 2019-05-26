@@ -26,11 +26,6 @@ public interface GankRecentlyView extends BaseMvpView {
     void hidePullDownRefresh();
 
     /**
-     * 显示下拉刷新动画
-     */
-    void showPullDownRefresh();
-
-    /**
      * 显示福利图
      * @param url
      */

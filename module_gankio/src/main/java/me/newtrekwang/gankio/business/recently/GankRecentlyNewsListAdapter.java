@@ -29,6 +29,7 @@ public class GankRecentlyNewsListAdapter extends BaseExpandableListAdapter {
     private LayoutInflater layoutInflater;
     private List<String> groupTitles ;
     private Map<String, List<NewsItem>> subItemsMap;
+    private SubItemClickListener subItemClickListener;
 
     public GankRecentlyNewsListAdapter(Context context) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -103,10 +104,18 @@ public class GankRecentlyNewsListAdapter extends BaseExpandableListAdapter {
         }
 
         List<NewsItem> newsItems = subItemsMap.get(groupTitles.get(groupPosition));
-        NewsItem item = newsItems.get(childPosition);
+        final NewsItem item = newsItems.get(childPosition);
         subItemViewHolder.tvAuther.setText(item.getWho());
         subItemViewHolder.tvSubTitle.setText(item.getDesc());
         subItemViewHolder.tvTime.setText(item.getPublishedAt());
+        subItemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (subItemClickListener != null){
+                    subItemClickListener.onSubItemClick(item);
+                }
+            }
+        });
         return convertView;
     }
 
@@ -136,6 +145,9 @@ public class GankRecentlyNewsListAdapter extends BaseExpandableListAdapter {
         this.notifyDataSetChanged();
     }
 
+    public void setSubItemClickListener(SubItemClickListener subItemClickListener) {
+        this.subItemClickListener = subItemClickListener;
+    }
 
 
     public static class GroupItemViewHolder {
@@ -152,10 +164,19 @@ public class GankRecentlyNewsListAdapter extends BaseExpandableListAdapter {
         public View itemView;
         public TextView tvSubTitle,tvAuther,tvTime;
         public SubItemViewHolder(View itemView) {
-            itemView = itemView;
+            this.itemView = itemView;
             tvSubTitle = itemView.findViewById(R.id.gankio_recently_item_tv_title);
             tvAuther = itemView.findViewById(R.id.gankio_recently_item_tv_auther);
             tvTime = itemView.findViewById(R.id.gankio_recently_item_tv_date);
         }
+    }
+
+
+    public interface SubItemClickListener {
+        /**
+         * 点击了Item
+         * @param newsItem
+         */
+        void onSubItemClick(NewsItem newsItem);
     }
 }

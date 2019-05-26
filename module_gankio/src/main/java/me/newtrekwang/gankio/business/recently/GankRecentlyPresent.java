@@ -46,7 +46,6 @@ public class GankRecentlyPresent extends BasePresenter<GankRecentlyView> {
         if (!canUseNetWork(baseApplication)){
             return;
         }
-        mView.showPullDownRefresh();
         // 至少延时400ms,将就下拉刷新效果
         Observable<GankIOBaseResp<Map<String,List<NewsItem>>>> observable = Observable.timer(1, TimeUnit.SECONDS)
                 .flatMap(new Function<Long, ObservableSource<GankIOBaseResp<Map<String,List<NewsItem>>>>>() {

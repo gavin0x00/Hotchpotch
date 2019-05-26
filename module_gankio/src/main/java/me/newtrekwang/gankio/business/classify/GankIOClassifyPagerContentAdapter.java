@@ -37,7 +37,6 @@ public class GankIOClassifyPagerContentAdapter extends BaseRecyclerViewAdapter<N
     }
 
     public static class NewsItemViewHolder extends RecyclerView.ViewHolder{
-        public View itemView;
         public TextView tvSubTitle,tvAuther,tvTime;
         public NewsItemViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -17,10 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.classic.common.MultipleStatusView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +31,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import me.newtrekwang.gankio.R;
+import me.newtrekwang.gankio.business.webbrowser.GankWebBrowserActivity;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
@@ -74,6 +75,16 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gankRecentlyNewsListAdapter = new GankRecentlyNewsListAdapter(getActivity());
+        gankRecentlyNewsListAdapter.setSubItemClickListener(new GankRecentlyNewsListAdapter.SubItemClickListener() {
+            @Override
+            public void onSubItemClick(NewsItem newsItem) {
+                ARouter.getInstance()
+                        .build(RouterPath.TechModule.PATH_TECH_GANK_IO_WEB_H5)
+                        .withString(GankWebBrowserActivity.KEY_BROWSER_URL,newsItem.getUrl())
+                        .withString(GankWebBrowserActivity.KEY_BROWSER_TITLE,newsItem.getDesc())
+                        .navigation();
+            }
+        });
     }
 
     @Override
@@ -132,7 +143,6 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 String dateSt = tvDate.getText().toString();
-                tvDate.setText(dateSt);
                 Date date = TimeUtils.string2Date(dateSt,simpleDateFormat);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
@@ -153,13 +163,7 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
             public void onTabSelected(TabLayout.Tab tab) {
                 String dateSt = tab.getText().toString();
                 tvDate.setText(dateSt);
-                Date date = TimeUtils.string2Date(dateSt,simpleDateFormat);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
-                // 请求获取该日的数据
-                if (date != null){
-                    mPresenter.getDailyData(cal.get(Calendar.YEAR),(cal.get(Calendar.MONTH)+1),cal.get(Calendar.DAY_OF_MONTH));
-                }
+                smartRefreshLayout.autoRefresh();
             }
 
             @Override
@@ -214,13 +218,6 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
         smartRefreshLayout.finishRefresh(true);
     }
 
-    @Override
-    public void showPullDownRefresh() {
-        boolean refreshing = smartRefreshLayout.getState() == RefreshState.Refreshing;
-        if (!refreshing){
-            smartRefreshLayout.autoRefresh();
-        }
-    }
 
     @Override
     public void showMeiZhiImg(String url) {

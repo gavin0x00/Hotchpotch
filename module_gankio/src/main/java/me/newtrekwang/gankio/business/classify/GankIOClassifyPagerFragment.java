@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -17,12 +18,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import java.util.List;
 
 import me.newtrekwang.gankio.R;
+import me.newtrekwang.gankio.business.webbrowser.GankWebBrowserActivity;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
 import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
 import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
 import me.newtrekwang.lib_base.utils.L;
+import me.newtrekwang.provider.router.RouterPath;
 
 /**
  * @className GankIOClassifyPagerFragment
@@ -115,7 +118,7 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gank_ioclassify_pager, container, false);
+        return inflater.inflate(R.layout.fragment_gank_io_classify_pager, container, false);
     }
 
     @Override
@@ -148,7 +151,11 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
             gankIOClassifyPagerContentAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<NewsItem>() {
                 @Override
                 public void onItemClick(NewsItem item, int position) {
-
+                    ARouter.getInstance()
+                            .build(RouterPath.TechModule.PATH_TECH_GANK_IO_WEB_H5)
+                            .withString(GankWebBrowserActivity.KEY_BROWSER_URL,item.getUrl())
+                            .withString(GankWebBrowserActivity.KEY_BROWSER_TITLE,item.getDesc())
+                            .navigation();
                 }
             });
         }
