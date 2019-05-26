@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.List;
@@ -78,7 +77,7 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
      * 尝试懒加载数据
      */
     private void tryLoadData() {
-        L.d(TAG,"isViewCreated: "+isViewCreated+"  isVisibleToUser: "+isVisibleToUser+"  isDataLoaded: "+isDataLoaded);
+        L.d(TAG,"title: "+title+"isViewCreated: "+isViewCreated+"  isVisibleToUser: "+isVisibleToUser+"  isDataLoaded: "+isDataLoaded);
         if (isViewCreated && isVisibleToUser && !isDataLoaded){
             initData();
             isDataLoaded = true;
@@ -90,8 +89,7 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
      */
     private void initData() {
         L.d(TAG,"titile: "+title+"  initData>>>>");
-        page = 1;
-        mPresenter.getContent(title,1);
+        smartRefreshLayout.autoRefresh();
     }
 
     @Override
@@ -133,11 +131,13 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
         smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                L.d(TAG,"onLoadMore>>>>>");
                 mPresenter.getContent(title,page);
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                L.d(TAG,"onRefresh>>>>>");
                 page = 1;
                 mPresenter.getContent(title,page);
             }
@@ -170,22 +170,6 @@ public class GankIOClassifyPagerFragment extends BaseMvpFragment<GankIOClassifyP
     @Override
     public void hideLoading() {
 
-    }
-
-    @Override
-    public void showPullDownRefresh() {
-        boolean refreshing = smartRefreshLayout.getState() == RefreshState.Refreshing;
-        if (!refreshing){
-            smartRefreshLayout.autoRefresh();
-        }
-    }
-
-    @Override
-    public void showPullUpRefresh() {
-        boolean loading = smartRefreshLayout.getState() == RefreshState.Loading;
-        if (!loading){
-            smartRefreshLayout.autoLoadMore();
-        }
     }
 
     @Override

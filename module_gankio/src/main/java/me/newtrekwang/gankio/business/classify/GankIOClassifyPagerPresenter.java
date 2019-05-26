@@ -47,12 +47,6 @@ public class GankIOClassifyPagerPresenter extends BasePresenter<GankIOClassifyPa
         if (!canUseNetWork(baseApplication)){
             return;
         }
-        if (pageIndex == 1){
-            mView.showPullDownRefresh();
-        }else {
-            mView.showPullUpRefresh();
-        }
-
         // 至少延时400ms,将就下拉刷新效果
         Observable<List<NewsItem>> observable = Observable.timer(1, TimeUnit.SECONDS)
                 .flatMap(new Function<Long, ObservableSource<List<NewsItem>>>() {

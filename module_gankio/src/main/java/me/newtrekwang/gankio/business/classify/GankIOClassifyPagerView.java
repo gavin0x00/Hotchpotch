@@ -13,8 +13,6 @@ import me.newtrekwang.lib_base.presenter.view.BaseMvpView;
  *
  */
 public interface GankIOClassifyPagerView extends BaseMvpView {
-    void showPullDownRefresh();
-    void showPullUpRefresh();
     void hidePullDownRefresh();
     void hidePullUpRefresh();
     void showPageOneData(List<NewsItem> newsItems);
