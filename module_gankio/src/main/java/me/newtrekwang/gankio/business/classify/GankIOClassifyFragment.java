@@ -2,23 +2,23 @@ package me.newtrekwang.gankio.business.classify;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.gankio.utils.DataUtils;
 import me.newtrekwang.provider.router.RouterPath;
@@ -100,10 +100,10 @@ public class GankIOClassifyFragment extends Fragment {
      * @desc 分类页面适配器
      *
      */
-    public static class GankIOClassifyPagerAdapter extends FragmentStatePagerAdapter{
+    public static class GankIOClassifyPagerAdapter extends FragmentStatePagerAdapter {
         private List<GankIOClassifyPagerFragment>  fragmentList;
         private List<String>  titles;
-        public GankIOClassifyPagerAdapter(@NonNull FragmentManager fm,@NonNull List<GankIOClassifyPagerFragment> fragments,@NonNull List<String> titles) {
+        public GankIOClassifyPagerAdapter(@NonNull FragmentManager fm, @NonNull List<GankIOClassifyPagerFragment> fragments, @NonNull List<String> titles) {
             super(fm);
             this.fragmentList = fragments;
             this.titles = titles;

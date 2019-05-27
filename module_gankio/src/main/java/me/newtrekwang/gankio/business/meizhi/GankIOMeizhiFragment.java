@@ -2,13 +2,13 @@ package me.newtrekwang.gankio.business.meizhi;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import androidx.fragment.app.Fragment;
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.provider.router.RouterPath;
 

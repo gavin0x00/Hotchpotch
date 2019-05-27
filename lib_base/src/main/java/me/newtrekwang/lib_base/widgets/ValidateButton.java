@@ -2,7 +2,7 @@ package me.newtrekwang.lib_base.widgets;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 
 import java.lang.ref.WeakReference;
@@ -17,7 +17,7 @@ import me.newtrekwang.lib_base.R;
  * @email 408030208@qq.com
  * @desc 获取验证码按钮，带倒计时
  */
-public class ValidateButton extends android.support.v7.widget.AppCompatButton{
+public class ValidateButton extends androidx.appcompat.widget.AppCompatButton{
     private Handler mHandler;
     /**
      * 默认60s

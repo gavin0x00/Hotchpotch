@@ -6,7 +6,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         tools:context=".business.classify.GankIOClassifyFragment">
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <ImageView
@@ -16,8 +16,8 @@
                 android:scaleType="center"
                 android:layout_gravity="right"
                 app:srcCompat="@drawable/ic_search" />
-        </android.support.design.widget.AppBarLayout>
-        <android.support.design.widget.TabLayout
+        </com.google.android.material.appbar.AppBarLayout>
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:id="@+id/gankio_classify_tabLayout_classify"
             app:tabTextColor="@color/colorPrimary"
@@ -26,8 +26,8 @@
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabSelectedTextColor="@color/colorPrimary"
             android:layout_height="60dp">
-        </android.support.design.widget.TabLayout>
-        <android.support.v4.view.ViewPager
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:id="@+id/gankio_classify_vp_content"

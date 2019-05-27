@@ -1,11 +1,12 @@
 package me.newtrekwang.lib_base.ui.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @param <T>
@@ -58,7 +59,7 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
 
 
     @Override
-    public void onBindViewHolder(@NonNull VH holder,final int position) {
+    public void onBindViewHolder(@NonNull VH holder, final int position) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

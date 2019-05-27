@@ -1,10 +1,10 @@
 package me.newtrekwang.lib_base.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
 import me.newtrekwang.lib_base.common.BaseApplication;
 import me.newtrekwang.lib_base.injection.component.ActivityComponent;
 import me.newtrekwang.lib_base.injection.component.AppComponent;

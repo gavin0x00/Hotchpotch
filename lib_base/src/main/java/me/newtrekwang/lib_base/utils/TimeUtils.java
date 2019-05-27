@@ -1,6 +1,5 @@
 package me.newtrekwang.lib_base.utils;
 
-import android.support.annotation.NonNull;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import me.newtrekwang.lib_base.common.TimeConstants;
 
 

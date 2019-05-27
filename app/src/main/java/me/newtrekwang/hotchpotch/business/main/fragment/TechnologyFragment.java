@@ -2,10 +2,6 @@ package me.newtrekwang.hotchpotch.business.main.fragment;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +11,10 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import me.newtrekwang.hotchpotch.uiwidget.CardItemDecoration;
 import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
 import me.newtrekwang.lib_base.ui.fragment.BaseFragment;

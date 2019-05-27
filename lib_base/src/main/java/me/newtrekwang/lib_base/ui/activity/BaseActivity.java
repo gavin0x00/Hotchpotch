@@ -1,10 +1,10 @@
 package me.newtrekwang.lib_base.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import androidx.annotation.Nullable;
 import me.newtrekwang.lib_base.common.AppManager;
 import me.newtrekwang.lib_base.presenter.view.BaseView;
 import me.newtrekwang.lib_base.utils.ToastUtils;

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:id="@+id/gankio_web_browser_rootView"
     tools:context=".business.webbrowser.GankWebBrowserActivity">
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="60dp">
 
@@ -35,7 +35,7 @@
                 android:textColor="@color/common_white"
                 android:textSize="@dimen/common_text_middle" />
         </LinearLayout>
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
     <WebView
         android:layout_width="match_parent"
         android:id="@+id/gankio_web_browser_webView"

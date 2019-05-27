@@ -1,8 +1,7 @@
 package me.newtrekwang.lib_base.utils;
 
-import android.support.annotation.ArrayRes;
-import android.support.annotation.StringRes;
-
+import androidx.annotation.ArrayRes;
+import androidx.annotation.StringRes;
 import me.newtrekwang.lib_base.common.BaseApplication;
 
 /**

@@ -1,6 +1,6 @@
 package me.newtrekwang.downloader;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 import me.newtrekwang.downloadlib.DownloadManager;
 import me.newtrekwang.downloadlib.entities.DownloadEntry;
 import me.newtrekwang.downloadlib.notify.DataWatcher;
-import me.newtrekwang.lib_base.utils.L;
 
 public class MainActivity extends AppCompatActivity {
 

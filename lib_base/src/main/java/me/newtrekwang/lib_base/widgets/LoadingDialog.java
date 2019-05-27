@@ -2,7 +2,6 @@ package me.newtrekwang.lib_base.widgets;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -10,6 +9,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import me.newtrekwang.lib_base.R;
 
 /**
