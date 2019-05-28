@@ -48,4 +48,9 @@ public class GankIODataServiceImp implements GankIODataService {
     public Observable<List<NewsItem>> getNewsData(String title, int page) {
         return gankIORepository.getNewsItemList(title, page).flatMap(new BaseFunc<>());
     }
+
+    @Override
+    public Observable<List<NewsItem>> getMeizhi(int page) {
+        return gankIORepository.getMeizhiList(page).flatMap(new BaseFunc<>());
+    }
 }

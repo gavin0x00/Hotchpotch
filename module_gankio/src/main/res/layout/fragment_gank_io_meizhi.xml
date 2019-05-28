@@ -4,12 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".business.meizhi.GankIOMeizhiFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        android:text="妹纸" />
-
+        android:id="@+id/gankio_meizhi_rv"
+        android:layout_height="match_parent"/>
 </FrameLayout>

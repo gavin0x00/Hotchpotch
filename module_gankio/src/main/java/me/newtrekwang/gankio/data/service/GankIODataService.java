@@ -38,4 +38,11 @@ public interface GankIODataService {
      * @return
      */
     Observable<List<NewsItem>>  getNewsData(String title,int page);
+
+    /**
+     * 获取妹纸图列表
+     * @param page
+     * @return
+     */
+    Observable<List<NewsItem>>  getMeizhi(int page);
 }

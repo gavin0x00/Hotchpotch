@@ -44,4 +44,12 @@ public interface GankIOApi {
      */
     @GET(Constants.GANKIO_URL_BASE+"search/query/listview/category/{title}/count/10/page/{page}")
     Observable<GankIOBaseResp<List<NewsItem>>>  getNewsItemList(@Path("title") String title,@Path("page") int page);
+
+    /**
+     * 获取福利
+     * @param page
+     * @return
+     */
+    @GET(Constants.GANKIO_URL_BASE+"data/%E7%A6%8F%E5%88%A9/10/{page}")
+    Observable<GankIOBaseResp<List<NewsItem>>>  getMeizhiList(@Path("page") int page);
 }

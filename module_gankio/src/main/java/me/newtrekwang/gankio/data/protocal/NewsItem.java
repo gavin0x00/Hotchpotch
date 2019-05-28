@@ -1,4 +1,9 @@
 package me.newtrekwang.gankio.data.protocal;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * @className NewsItem
  * @createDate 2019/5/11 18:06
@@ -7,6 +12,7 @@ package me.newtrekwang.gankio.data.protocal;
  * @desc 单项信息数据类
  *
  */
+@Entity(tableName = "news")
 public class NewsItem {
 
 
@@ -21,7 +27,8 @@ public class NewsItem {
      * used : true
      * who : 潇湘剑雨
      */
-
+    @NonNull
+    @PrimaryKey
     private String _id;
     private String createdAt;
     private String desc;

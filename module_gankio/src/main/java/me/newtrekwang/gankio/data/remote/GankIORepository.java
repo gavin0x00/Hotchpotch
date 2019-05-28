@@ -6,9 +6,12 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import me.newtrekwang.gankio.common.Constants;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.lib_base.data.net.RetrofitFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * @className GankIORepository
@@ -54,4 +57,15 @@ public class GankIORepository {
                 .create(GankIOApi.class)
                 .getNewsItemList(title, page);
     }
+
+    /**
+     * 获取福利
+     * @param page
+     * @return
+     */
+   public Observable<GankIOBaseResp<List<NewsItem>>>  getMeizhiList(int page){
+       return RetrofitFactory.getRetrofit()
+               .create(GankIOApi.class)
+               .getMeizhiList(page);
+   }
 }

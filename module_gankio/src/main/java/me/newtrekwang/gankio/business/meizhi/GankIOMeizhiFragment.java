@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import java.util.List;
+
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import me.newtrekwang.gankio.R;
+import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.provider.router.RouterPath;
 
 /**
@@ -22,7 +26,6 @@ import me.newtrekwang.provider.router.RouterPath;
  */
 @Route(path = RouterPath.TechModule.PATH_TECH_GANK_IO_NEIZHI)
 public class GankIOMeizhiFragment extends Fragment {
-
 
     public GankIOMeizhiFragment() {
         // Required empty public constructor
