@@ -2,6 +2,7 @@ package me.newtrekwang.gankio.inject;
 
 import dagger.Component;
 import me.newtrekwang.gankio.business.classify.GankIOClassifyPagerFragment;
+import me.newtrekwang.gankio.business.meizhi.GankIOMeizhiFragment;
 import me.newtrekwang.gankio.business.recently.GankRecentlyFragment;
 import me.newtrekwang.lib_base.injection.PerComponentScope;
 import me.newtrekwang.lib_base.injection.component.ActivityComponent;
@@ -18,4 +19,5 @@ import me.newtrekwang.lib_base.injection.component.ActivityComponent;
 public interface GankIOComponent {
         void inject(GankRecentlyFragment gankRecentlyFragment);
         void inject(GankIOClassifyPagerFragment gankIOClassifyPagerFragment);
+        void inject(GankIOMeizhiFragment gankIOMeizhiFragment);
 }
