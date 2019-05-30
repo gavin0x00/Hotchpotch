@@ -1,4 +1,4 @@
-package me.newtrekwang.module_custom_widget;
+package me.newtrekwang.customwidget;
 
 
 import android.os.Bundle;

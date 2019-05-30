@@ -1,12 +1,16 @@
-package me.newtrekwang.module_av;
+package me.newtrekwang.av;
 
-import androidx.databinding.DataBindingUtil;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import me.newtrekwang.module_av.databinding.ActivityAvMainBinding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import me.newtrekwang.av.databinding.ActivityAvMainBinding;
+import me.newtrekwang.av.nativeutils.JNIUtils;
 
 public class AvMainActivity extends AppCompatActivity {
+    static {
+
+    }
     private ActivityAvMainBinding activityAvMainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +20,8 @@ public class AvMainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
+        String testJniString = JNIUtils.getStringFromC();
+        activityAvMainBinding.avMainTvTest.setText(testJniString);
     }
 
 

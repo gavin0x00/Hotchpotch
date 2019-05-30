@@ -1,4 +1,4 @@
-package me.newtrekwang.module_av;
+package me.newtrekwang.customwidget;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("me.newtrekwang.module_av", appContext.getPackageName());
+        assertEquals("me.newtrekwang.moudle_custom_widget", appContext.getPackageName());
     }
 }

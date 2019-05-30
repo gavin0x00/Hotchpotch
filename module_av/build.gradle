@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         if (debugAvModule.toBoolean()){
-            applicationId "me.newtrekwang.module_av"
+            applicationId "me.newtrekwang.av"
         }
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
@@ -48,8 +48,10 @@ android {
         main {
             if (debugAvModule.toBoolean()){
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                jni.srcDirs=["src/main/cpp"] //指定c/c++源码位置
             }else{
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                jni.srcDirs=["src/main/cpp"] //指定c/c++源码位置
                 java {
                     //全部Module一起编译的时候剔除debug目录
                     exclude '**/debug/**'
@@ -58,9 +60,17 @@ android {
         }
     }
 
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+
     dataBinding{
         enabled true
     }
+
+
 
 }
 

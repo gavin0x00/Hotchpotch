@@ -1,4 +1,4 @@
-package me.newtrekwang.module_custom_widget;
+package me.newtrekwang.av;
 
 import org.junit.Test;
 
