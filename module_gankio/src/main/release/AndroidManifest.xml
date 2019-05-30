@@ -4,5 +4,6 @@
     <application
         >
         <activity android:name=".business.main.GankIOMainActivity"/>
+        <activity android:name=".business.webbrowser.GankWebBrowserActivity"/>
     </application>
 </manifest>

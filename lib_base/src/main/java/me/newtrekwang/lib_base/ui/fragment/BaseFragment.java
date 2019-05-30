@@ -1,7 +1,5 @@
 package me.newtrekwang.lib_base.ui.fragment;
 
-import com.trello.rxlifecycle2.components.support.RxFragment;
-
 import me.newtrekwang.lib_base.presenter.view.BaseView;
 import me.newtrekwang.lib_base.utils.ToastUtils;
 

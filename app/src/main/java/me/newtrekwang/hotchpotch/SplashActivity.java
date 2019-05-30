@@ -3,10 +3,10 @@ package me.newtrekwang.hotchpotch;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import me.newtrekwang.lib_base.ui.activity.BaseActivity;
 import me.newtrekwang.provider.router.RouterPath;
 
 
@@ -17,7 +17,7 @@ import me.newtrekwang.provider.router.RouterPath;
  * @email 408030208@qq.com
  * @desc Splash界面
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

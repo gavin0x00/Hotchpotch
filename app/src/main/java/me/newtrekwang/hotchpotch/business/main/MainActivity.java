@@ -12,10 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import me.newtrekwang.hotchpotch.inject.DaggerMainAppComponent;
-import me.newtrekwang.lib_base.ui.activity.BaseMvpActivity;
+import me.newtrekwang.lib_base.ui.activity.BaseActivity;
 import me.newtrekwang.hotchpotch.R;
-import me.newtrekwang.hotchpotch.inject.MainModule;
 import me.newtrekwang.provider.router.RouterPath;
 
 /**
@@ -27,7 +25,7 @@ import me.newtrekwang.provider.router.RouterPath;
  *
  */
 @Route(path = RouterPath.MainModule.PATH_MAIN)
-public class MainActivity extends BaseMvpActivity<MainPresenter> implements MainMvpView {
+public class MainActivity extends BaseActivity {
 
     /**
      * 底部导航栏
@@ -89,10 +87,10 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
             mEnterFragment = getSupportFragmentManager().getFragment(savedInstanceState,KEY_ENTER);
             mOtherFragment = getSupportFragmentManager().getFragment(savedInstanceState,KEY_OTHER);
         }else {
-            mTechFragment = (Fragment) ARouter.getInstance().build(RouterPath.TechModule.PATH_TECH).navigation();
-            mNewsFragment = (Fragment) ARouter.getInstance().build(RouterPath.NewsModule.PATH_FRAGMENT_NEWS).navigation();
-            mEnterFragment = (Fragment) ARouter.getInstance().build(RouterPath.EnterModule.PATH_FRAGMENT_ENTER).navigation();
-            mOtherFragment = (Fragment) ARouter.getInstance().build(RouterPath.OtherModule.PATH_FRAGMENT_OTHER).navigation();
+            mTechFragment = (Fragment) ARouter.getInstance().build(RouterPath.MainModule.PATH_TECH).navigation();
+            mNewsFragment = (Fragment) ARouter.getInstance().build(RouterPath.MainModule.PATH_NEWS).navigation();
+            mEnterFragment = (Fragment) ARouter.getInstance().build(RouterPath.MainModule.PATH_ENTER).navigation();
+            mOtherFragment = (Fragment) ARouter.getInstance().build(RouterPath.MainModule.PATH_OTHER).navigation();
         }
     }
 
@@ -128,17 +126,15 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.main_bottom_nav_module_technology:
-                        return changeToFragment(mTechFragment);
-                    case R.id.main_bottom_nav_module_news:
-                        return changeToFragment(mNewsFragment);
-                    case R.id.main_bottom_nav_module_entertainment:
-                        return  changeToFragment(mEnterFragment);
-                    case R.id.main_bottom_nav_other:
-                        return changeToFragment(mOtherFragment);
-                    default:
-                        break;
+                int itemId = item.getItemId();
+                if (itemId == R.id.main_bottom_nav_module_technology){
+                    return changeToFragment(mTechFragment);
+                }else if (itemId == R.id.main_bottom_nav_module_news){
+                    return changeToFragment(mNewsFragment);
+                }else if (itemId == R.id.main_bottom_nav_module_entertainment){
+                    return changeToFragment(mEnterFragment);
+                }else if (itemId == R.id.main_bottom_nav_other){
+                    return changeToFragment(mOtherFragment);
                 }
                 return false;
             }
@@ -176,19 +172,4 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Main
         return true;
     }
 
-
-
-    /**
-     *
-     * 注入依赖
-     */
-    @Override
-    protected void initInjection() {
-        DaggerMainAppComponent.builder()
-                .activityComponent(activityComponent)
-                .mainModule(new MainModule())
-                .build()
-                .inject(this);
-        mPresenter.mView = this;
-    }
 }

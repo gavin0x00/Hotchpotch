@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Hotchpotch</string>
     <string name="gank_io">GankIO</string>
-    <string name="baisi">百思</string>
-    <string name="douban_movie">豆瓣电影</string>
-    <string name="other">其他</string>
+    <string name="baisi">Baisi</string>
+    <string name="douban_movie">Douban</string>
+    <string name="other">Other</string>
     <string name="technology">Technology</string>
     <string name="news">News</string>
     <string name="entertainment">Entertainment</string>

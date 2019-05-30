@@ -86,15 +86,14 @@ public class GankIOMainActivity extends AppCompatActivity {
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.gankio_bottom_nav_module_recently:
-                        return changeToFragment(mRecentlyNewsFragment);
-                    case R.id.gankio_bottom_nav_module_classify:
-                        return changeToFragment(mClassifyFragment);
-                    case R.id.gankio_bottom_nav_module_meizhi:
-                        return  changeToFragment(mMeizhiFragment);
-                    default:
-                        break;
+                int i = item.getItemId();
+                if (i == R.id.gankio_bottom_nav_module_recently) {
+                    return changeToFragment(mRecentlyNewsFragment);
+                } else if (i == R.id.gankio_bottom_nav_module_classify) {
+                    return changeToFragment(mClassifyFragment);
+                } else if (i == R.id.gankio_bottom_nav_module_meizhi) {
+                    return changeToFragment(mMeizhiFragment);
+                } else {
                 }
                 return false;
             }

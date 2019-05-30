@@ -1,1 +1,1 @@
-include ':app', ':lib_base', ':lib_provider', ':module_gankio', ':module_downloader', ':lib_download', ':module_av', ':moudle_custom_widget'
+include ':app', ':lib_base', ':lib_provider', ':module_gankio', ':module_downloader', ':lib_download', ':module_av', ':module_custom_widget'

@@ -14,6 +14,6 @@
         android:title="@string/entertainment" />
     <item
         android:id="@+id/main_bottom_nav_other"
-        android:icon="@drawable/ic_other"
+        android:icon="@drawable/ic_others"
         android:title="@string/other" />
 </menu>

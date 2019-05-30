@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ import me.newtrekwang.provider.router.RouterPath;
  * @desc 技术干货碎片首页
  *
  */
-@Route(path = RouterPath.TechModule.PATH_TECH)
+@Route(path = RouterPath.MainModule.PATH_TECH)
 public class TechnologyFragment extends BaseFragment {
     private RecyclerView rcTech;
     private TechnologyListAdapter technologyListAdapter;
@@ -45,7 +46,13 @@ public class TechnologyFragment extends BaseFragment {
         technologyListAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<String>() {
             @Override
             public void onItemClick(String item, int position) {
-                showToast(item);
+                if (item.equals("GankIO")){
+                    // 跳转到GankIO模块
+                    ARouter.getInstance().build(RouterPath.TechModule.PATH_TECH_GANK_IO_MAIN)
+                            .navigation();
+                }else {
+                    showToast("模块暂未实现!");
+                }
             }
         });
     }

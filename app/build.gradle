@@ -45,6 +45,10 @@ dependencies {
     if (!debugGankModule.toBoolean()) {
         implementation project(':module_gankio')
     }
+    // 是否组合自定义控件模块
+    if (!debugCustomWidgetModule.toBoolean()){
+        implementation project(':module_custom_widget')
+    }
     // 注解处理器
     // dagger2
     annotationProcessor deps.dagger.compiler

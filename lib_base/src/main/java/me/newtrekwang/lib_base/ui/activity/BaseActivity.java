@@ -2,8 +2,6 @@ package me.newtrekwang.lib_base.ui.activity;
 
 import android.os.Bundle;
 
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
 import androidx.annotation.Nullable;
 import me.newtrekwang.lib_base.common.AppManager;
 import me.newtrekwang.lib_base.presenter.view.BaseView;
@@ -16,7 +14,7 @@ import me.newtrekwang.lib_base.utils.ToastUtils;
  * @email 408030208@qq.com
  * @desc activity基类
  */
-public class BaseActivity extends RxAppCompatActivity implements BaseView {
+public class BaseActivity extends RxActivity implements BaseView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,4 +32,5 @@ public class BaseActivity extends RxAppCompatActivity implements BaseView {
     public void showToast(String msg) {
         ToastUtils.showShort(msg);
     }
+
 }

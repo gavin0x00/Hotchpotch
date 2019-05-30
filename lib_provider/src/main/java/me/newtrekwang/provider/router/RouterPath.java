@@ -20,6 +20,22 @@ public final class RouterPath {
     public static final class MainModule {
         private MainModule(){}
         public static final String PATH_MAIN = "/App/Home";
+        /**
+         * 技术干货导航碎片页
+         */
+        public static final String PATH_TECH = "/App/Tect/Navigation";
+        /**
+         * 新闻类导航碎片页
+         */
+        public static final String PATH_NEWS = "/App/News/Navigation";
+        /**
+         * 影音娱乐导航页
+         */
+        public static final String PATH_ENTER = "/App/Enter/Navigation";
+        /**
+         * 其它导航页
+         */
+        public static final String PATH_OTHER = "/App/Other/Navigation";
     }
     /**
      * @className RouterPath
@@ -31,11 +47,6 @@ public final class RouterPath {
      */
     public static final class TechModule {
         private TechModule(){}
-
-        /**
-         * 技术干货首页碎片
-         */
-        public static final String PATH_TECH = "/Tech/main";
 
 /************************************************ GankIO start ***********************************************************************/
         private static final String GANKIO = "/Tech/GankIO/";
@@ -73,7 +84,7 @@ public final class RouterPath {
      */
     public static final class NewsModule {
         private NewsModule(){}
-        public static final String PATH_FRAGMENT_NEWS = "/NewsFragment/";
+
     }
 
    /**
@@ -86,7 +97,7 @@ public final class RouterPath {
     */
     public static final class EnterModule {
         private EnterModule(){}
-        public static final String PATH_FRAGMENT_ENTER = "/EnterFragment/";
+
     }
 
    /**
@@ -99,8 +110,17 @@ public final class RouterPath {
     */
     public static final class OtherModule{
         private OtherModule(){}
-        public static final String PATH_FRAGMENT_OTHER = "/OtherFragment/";
-    }
+
+        /***************************************** custom widget start ***************************************************************/
+        public static final String CUSTOM_WIDGET = "/Other/CustomWidget/";
+       /**
+        * 定义控件模块首页
+        */
+       public static final String CUSTOM_WIDGET_MAIN = CUSTOM_WIDGET+"Main";
+
+       /***************************************** custom widget end ***************************************************************/
+
+   }
 
 
 }
