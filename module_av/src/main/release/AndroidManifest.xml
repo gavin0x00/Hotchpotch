@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".AvMainActivity"/>
+        <activity android:name=".imageprocess.ImageProcessActivity"/>
     </application>
 
 </manifest>

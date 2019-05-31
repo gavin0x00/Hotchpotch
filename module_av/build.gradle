@@ -1,6 +1,6 @@
-if (debugAvModule.toBoolean()){
+if (debugAvModule.toBoolean()) {
     apply plugin: 'com.android.application'
-}else{
+} else {
     apply plugin: 'com.android.library'
 }
 
@@ -9,7 +9,7 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        if (debugAvModule.toBoolean()){
+        if (debugAvModule.toBoolean()) {
             applicationId "me.newtrekwang.av"
         }
         minSdkVersion build_versions.min_sdk
@@ -30,6 +30,17 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
         }
         vectorDrawables.useSupportLibrary = true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions"
+                abiFilters 'armeabi-v7a','arm64-v8a'
+            }
+        }
+
+        ndk {
+            abiFilters 'armeabi-v7a','arm64-v8a'
+        }
     }
 
     buildTypes {
@@ -46,12 +57,12 @@ android {
 
     sourceSets {
         main {
-            if (debugAvModule.toBoolean()){
+            jni.srcDirs = ["src/main/cpp"] //指定c/c++源码位置
+            jniLibs.srcDirs = ['src/main/jniLibs/libs']
+            if (debugAvModule.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-                jni.srcDirs=["src/main/cpp"] //指定c/c++源码位置
-            }else{
+            } else {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
-                jni.srcDirs=["src/main/cpp"] //指定c/c++源码位置
                 java {
                     //全部Module一起编译的时候剔除debug目录
                     exclude '**/debug/**'
@@ -62,14 +73,13 @@ android {
 
     externalNativeBuild {
         cmake {
-            path file('src/main/cpp/CMakeLists.txt')
+            path file('CMakeLists.txt')
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled true
     }
-
 
 
 }

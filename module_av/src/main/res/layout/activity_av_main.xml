@@ -14,9 +14,10 @@
             android:text="录制音频"
             android:id="@+id/av_main_btn_record_audio"
             android:layout_height="wrap_content" />
-        <TextView
+        <Button
             android:layout_width="match_parent"
-            android:id="@+id/av_main_tv_test"
+            android:text="图像处理"
+            android:id="@+id/av_main_btn_image_process"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>

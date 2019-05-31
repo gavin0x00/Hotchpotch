@@ -9,7 +9,9 @@ package me.newtrekwang.av.nativeutils;
  */
 public class JNIUtils {
     static {
-        System.loadLibrary("hello");
+        System.loadLibrary("opencv_java4");
+        System.loadLibrary("hello_opencv");
     }
-    public static native String getStringFromC();
+
+    public static native int[] bitmap2Grey(int[] pixels,int w,int h);
 }

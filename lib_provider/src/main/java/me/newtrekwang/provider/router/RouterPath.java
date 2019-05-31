@@ -98,7 +98,20 @@ public final class RouterPath {
     public static final class EnterModule {
         private EnterModule(){}
 
-    }
+        /********************************************* av start ************************************************************************/
+        public static final String AV = "/Enter/Av/";
+       /**
+        * 音视频处理导航页
+        */
+       public static final String AV_MAIN = AV+"Main";
+       /**
+        * 图片处理页
+        */
+       public static final String AV_IMAGE_PROCESS = AV+"ImageProcess";
+       /********************************************* av end ************************************************************************/
+
+
+   }
 
    /**
     * @className RouterPath
