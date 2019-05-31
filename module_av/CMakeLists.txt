@@ -14,10 +14,10 @@ include_directories(${opencv2-headers})
 #############################################################引入链接库开始###############################################################################
 
 # 导入opencv_java4 动态库
-add_library(libopencv_java4 SHARED IMPORTED)
+add_library(libopencv_java3 SHARED IMPORTED)
 set_target_properties(libopencv_java3
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_SOURCE_DIR}/jniLibs/libs/${CMAKE_ANDROID_ARCH_ABI}/libopencv_java3.so)
+        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/libs/${CMAKE_ANDROID_ARCH_ABI}/libopencv_java3.so)
 
 #############################################################引入链接库结束###############################################################################
 
