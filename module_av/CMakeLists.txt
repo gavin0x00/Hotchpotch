@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.6.0)
 
 #############################################################引入头文件开始###############################################################################
-# 引入opencv2 头文件
+# 引入opencv 头文件
 set(opencv2-headers ${CMAKE_SOURCE_DIR}/src/main/cpp/include)
 include_directories(${opencv2-headers})
 
@@ -14,10 +14,10 @@ include_directories(${opencv2-headers})
 #############################################################引入链接库开始###############################################################################
 
 # 导入opencv_java4 动态库
-add_library(libopencv_java3 SHARED IMPORTED)
-set_target_properties(libopencv_java3
+add_library(libopencv_java4 SHARED IMPORTED)
+set_target_properties(libopencv_java4
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/libs/${CMAKE_ANDROID_ARCH_ABI}/libopencv_java3.so)
+        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/libs/${CMAKE_ANDROID_ARCH_ABI}/libopencv_java4.so)
 
 #############################################################引入链接库结束###############################################################################
 
@@ -38,5 +38,5 @@ find_library(log-lib
 
 # 将第三方库以及自己写的库关联到需要用的NDK原生库中
 target_link_libraries(
-        hello_opencv libopencv_java3
+        hello_opencv libopencv_java4 jnigraphics
         ${log-lib})

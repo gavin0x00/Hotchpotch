@@ -8,7 +8,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".imageprocess.ImageProcessActivity">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/av_img_meizhi"
+            android:scaleType="center"
+            android:layout_height="400dp" />
 
-
+        <Button
+            android:layout_width="match_parent"
+            android:text="灰化"
+            android:id="@+id/av_btn_gray"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="match_parent"
+            android:text="正常"
+            android:id="@+id/av_btn_normal"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>

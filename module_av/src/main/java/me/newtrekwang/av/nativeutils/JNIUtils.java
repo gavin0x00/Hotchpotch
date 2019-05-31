@@ -9,7 +9,6 @@ package me.newtrekwang.av.nativeutils;
  */
 public class JNIUtils {
     static {
-        System.loadLibrary("opencv_java4");
         System.loadLibrary("hello_opencv");
     }
 
