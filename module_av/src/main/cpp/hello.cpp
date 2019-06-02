@@ -15,20 +15,27 @@ JNIEXPORT jintArray JNICALL
 Java_me_newtrekwang_av_nativeutils_JNIUtils_bitmap2Grey(JNIEnv *env, jclass type, jintArray buf,
                                                         jint w, jint h) {
     jint *cbuf;
-    jboolean ptfalse = false;
-    cbuf = env->GetIntArrayElements(buf, &ptfalse);
+    cbuf = env->GetIntArrayElements(buf, JNI_FALSE);
     if(cbuf == NULL){
         return 0;
     }
 
-    const Mat imgData(h, w, CV_8UC4, (unsigned char*)cbuf);
-    // 注意，Android的Bitmap是ARGB四通道,而不是RGB三通道
-    cvtColor(imgData,imgData,COLOR_BGRA2GRAY,0);
-    cvtColor(imgData,imgData,COLOR_GRAY2BGRA,0);
+    Mat imgData(h, w, CV_8UC4, (unsigned char *)cbuf);
 
-    int size=w * h;
+    uchar* ptr = imgData.ptr(0);
+
+    for (int i = 0; i < w * h; ++i) {
+        // 计算公式：Y(亮度) = 0.299*R + 0.587*G + 0.114*B
+        // 对于一个int四字节，其彩色值存储方式为：BGRA
+        int grayScale = (int)(ptr[4*i+2]*0.299 + ptr[4*i+1]*0.587 + ptr[4*i+0]*0.114);
+        ptr[4*i+1] = grayScale;
+        ptr[4*i+2] = grayScale;
+        ptr[4*i+0] = grayScale;
+    }
+
+    int size = w * h;
     jintArray result = env->NewIntArray(size);
-    env->SetIntArrayRegion(result, 0, size, (jint*)imgData.data);
+    env->SetIntArrayRegion(result, 0, size, cbuf);
     env->ReleaseIntArrayElements(buf, cbuf, 0);
     return result;
 
