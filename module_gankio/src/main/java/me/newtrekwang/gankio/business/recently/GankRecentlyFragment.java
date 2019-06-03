@@ -36,10 +36,10 @@ import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
 import me.newtrekwang.gankio.widgets.UMExpandLayout;
-import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
-import me.newtrekwang.lib_base.utils.ImageLoaderUtils;
-import me.newtrekwang.lib_base.utils.L;
-import me.newtrekwang.lib_base.utils.TimeUtils;
+import me.newtrekwang.base.ui.fragment.BaseMvpFragment;
+import me.newtrekwang.base.utils.ImageLoaderUtils;
+import me.newtrekwang.base.utils.L;
+import me.newtrekwang.base.utils.TimeUtils;
 import me.newtrekwang.provider.router.RouterPath;
 
 

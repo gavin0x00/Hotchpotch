@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.newtrekwang.gankio.data.protocal.NewsItem;
-import me.newtrekwang.lib_base.presenter.view.BaseMvpView;
+import me.newtrekwang.base.presenter.view.BaseMvpView;
 /**
  * @className GankRecentlyView
  * @createDate 2019/5/11 19:02

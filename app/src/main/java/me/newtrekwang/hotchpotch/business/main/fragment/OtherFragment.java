@@ -12,7 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import me.newtrekwang.hotchpotch.R;
-import me.newtrekwang.lib_base.ui.fragment.BaseFragment;
+import me.newtrekwang.base.ui.fragment.BaseFragment;
 import me.newtrekwang.provider.router.RouterPath;
 
 /**

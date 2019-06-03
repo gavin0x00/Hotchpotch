@@ -1,7 +1,7 @@
 package me.newtrekwang.hotchpotch.common;
 
 
-import me.newtrekwang.lib_base.common.BaseApplication;
+import me.newtrekwang.base.common.BaseApplication;
 
 /**
  * @author newtrekWang

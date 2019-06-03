@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import me.newtrekwang.gankio.R;
-import me.newtrekwang.lib_base.ui.activity.BaseActivity;
+import me.newtrekwang.base.ui.activity.BaseActivity;
 import me.newtrekwang.provider.router.RouterPath;
 
 /**

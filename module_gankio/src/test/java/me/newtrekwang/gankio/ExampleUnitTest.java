@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import me.newtrekwang.lib_base.utils.TimeUtils;
+import me.newtrekwang.base.utils.TimeUtils;
 
 import static org.junit.Assert.assertEquals;
 

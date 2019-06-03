@@ -3,7 +3,7 @@ package me.newtrekwang.gankio.business.meizhi;
 import java.util.List;
 
 import me.newtrekwang.gankio.data.protocal.NewsItem;
-import me.newtrekwang.lib_base.presenter.view.BaseMvpView;
+import me.newtrekwang.base.presenter.view.BaseMvpView;
 
 /**
  * @author newtrekWang

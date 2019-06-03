@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
-import me.newtrekwang.lib_base.common.BaseApplication;
-import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
-import me.newtrekwang.lib_base.utils.ImageLoaderUtils;
+import me.newtrekwang.base.common.BaseApplication;
+import me.newtrekwang.base.ui.adapter.BaseRecyclerViewAdapter;
+import me.newtrekwang.base.utils.ImageLoaderUtils;
 
 /**
  * @author newtrekWang

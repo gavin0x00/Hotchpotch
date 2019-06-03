@@ -3,7 +3,7 @@ package me.newtrekwang.gankio.utils;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
-import me.newtrekwang.lib_base.utils.ExceptionHandle;
+import me.newtrekwang.base.utils.ExceptionHandle;
 
 /**
  * @className BaseFunc

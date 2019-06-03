@@ -1,7 +1,7 @@
 package me.newtrekwang.downloader;
 
 import me.newtrekwang.downloadlib.DownloadManager;
-import me.newtrekwang.lib_base.common.BaseApplication;
+import me.newtrekwang.base.common.BaseApplication;
 
 /**
  * @author newtrekWang

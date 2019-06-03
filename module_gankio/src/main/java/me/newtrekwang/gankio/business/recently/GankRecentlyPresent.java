@@ -14,11 +14,11 @@ import io.reactivex.functions.Function;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.data.service.GankIODataService;
-import me.newtrekwang.lib_base.common.BaseApplication;
-import me.newtrekwang.lib_base.ext.CommonExt;
-import me.newtrekwang.lib_base.presenter.BasePresenter;
-import me.newtrekwang.lib_base.rx.BaseSubscriber;
-import me.newtrekwang.lib_base.utils.ExceptionHandle;
+import me.newtrekwang.base.common.BaseApplication;
+import me.newtrekwang.base.ext.CommonExt;
+import me.newtrekwang.base.presenter.BasePresenter;
+import me.newtrekwang.base.rx.BaseSubscriber;
+import me.newtrekwang.base.utils.ExceptionHandle;
 
 /**
  * @className GankRecentlyPresent

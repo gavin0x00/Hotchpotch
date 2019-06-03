@@ -22,9 +22,9 @@ import me.newtrekwang.gankio.business.webbrowser.GankWebBrowserActivity;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
-import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
-import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
-import me.newtrekwang.lib_base.utils.L;
+import me.newtrekwang.base.ui.adapter.BaseRecyclerViewAdapter;
+import me.newtrekwang.base.ui.fragment.BaseMvpFragment;
+import me.newtrekwang.base.utils.L;
 import me.newtrekwang.provider.router.RouterPath;
 
 /**

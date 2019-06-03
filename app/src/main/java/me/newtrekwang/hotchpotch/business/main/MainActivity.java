@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import me.newtrekwang.lib_base.ui.activity.BaseActivity;
+import me.newtrekwang.base.ui.activity.BaseActivity;
 import me.newtrekwang.hotchpotch.R;
 import me.newtrekwang.provider.router.RouterPath;
 

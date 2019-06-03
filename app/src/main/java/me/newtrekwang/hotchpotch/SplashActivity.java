@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import me.newtrekwang.lib_base.ui.activity.BaseActivity;
+import me.newtrekwang.base.ui.activity.BaseActivity;
 import me.newtrekwang.provider.router.RouterPath;
 
 

@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import me.newtrekwang.av.R;
 import me.newtrekwang.av.databinding.ActivityAvImageProcessBinding;
 import me.newtrekwang.av.nativeutils.JNIUtils;
-import me.newtrekwang.lib_base.ui.activity.BaseActivity;
+import me.newtrekwang.base.ui.activity.BaseActivity;
 import me.newtrekwang.provider.router.RouterPath;
 /**
  * @className ImageProcessActivity

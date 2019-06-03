@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import me.newtrekwang.lib_base.utils.L;
+import me.newtrekwang.base.utils.L;
 
 /**
  * @className UMExpandLayout

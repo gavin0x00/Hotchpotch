@@ -16,15 +16,14 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
-import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
-import me.newtrekwang.lib_base.ui.fragment.BaseMvpFragment;
+import me.newtrekwang.base.ui.adapter.BaseRecyclerViewAdapter;
+import me.newtrekwang.base.ui.fragment.BaseMvpFragment;
 import me.newtrekwang.provider.router.RouterPath;
 
 /**

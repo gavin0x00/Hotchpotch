@@ -6,12 +6,9 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import me.newtrekwang.gankio.common.Constants;
 import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
-import me.newtrekwang.lib_base.data.net.RetrofitFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+import me.newtrekwang.base.data.net.RetrofitFactory;
 
 /**
  * @className GankIORepository

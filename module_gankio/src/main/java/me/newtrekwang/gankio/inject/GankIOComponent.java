@@ -4,8 +4,8 @@ import dagger.Component;
 import me.newtrekwang.gankio.business.classify.GankIOClassifyPagerFragment;
 import me.newtrekwang.gankio.business.meizhi.GankIOMeizhiFragment;
 import me.newtrekwang.gankio.business.recently.GankRecentlyFragment;
-import me.newtrekwang.lib_base.injection.PerComponentScope;
-import me.newtrekwang.lib_base.injection.component.ActivityComponent;
+import me.newtrekwang.base.injection.PerComponentScope;
+import me.newtrekwang.base.injection.component.ActivityComponent;
 /**
  * @className GankIOComponent
  * @createDate 2019/5/1 13:34

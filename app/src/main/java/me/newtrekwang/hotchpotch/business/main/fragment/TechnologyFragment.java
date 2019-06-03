@@ -17,8 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.newtrekwang.hotchpotch.uiwidget.CardItemDecoration;
-import me.newtrekwang.lib_base.ui.adapter.BaseRecyclerViewAdapter;
-import me.newtrekwang.lib_base.ui.fragment.BaseFragment;
+import me.newtrekwang.base.ui.adapter.BaseRecyclerViewAdapter;
+import me.newtrekwang.base.ui.fragment.BaseFragment;
 import me.newtrekwang.hotchpotch.R;
 import me.newtrekwang.provider.router.RouterPath;
 

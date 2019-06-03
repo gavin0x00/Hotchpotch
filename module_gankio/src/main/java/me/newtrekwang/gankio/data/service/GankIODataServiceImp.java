@@ -11,7 +11,7 @@ import me.newtrekwang.gankio.data.protocal.GankIOBaseResp;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.gankio.data.remote.GankIORepository;
 import me.newtrekwang.gankio.utils.BaseFunc;
-import me.newtrekwang.lib_base.utils.ExceptionHandle;
+import me.newtrekwang.base.utils.ExceptionHandle;
 
 /**
  * @className GankIODataServiceImp

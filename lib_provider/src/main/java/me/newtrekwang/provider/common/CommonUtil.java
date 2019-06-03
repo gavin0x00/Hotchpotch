@@ -2,8 +2,8 @@ package me.newtrekwang.provider.common;
 
 import android.text.TextUtils;
 
-import me.newtrekwang.lib_base.common.BaseConstant;
-import me.newtrekwang.lib_base.utils.AppPrefsUtils;
+import me.newtrekwang.base.common.BaseConstant;
+import me.newtrekwang.base.utils.AppPrefsUtils;
 
 /**
  * @author newtrekWang
