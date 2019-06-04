@@ -4,6 +4,8 @@ import android.widget.ImageView;
 
 import javax.annotation.Nonnull;
 
+import me.newtrekwang.base.R;
+
 /**
  * @className ImageLoader
  * @createDate 2019/6/4 1:07
@@ -14,13 +16,30 @@ import javax.annotation.Nonnull;
  */
 public class ImageLoader {
     /**
+     * 加载图片大小类型声明
+     */
+    public enum LoadSizeType{
+        PIC_SMALL,
+        PIC_NORMAL,
+        PIC_BIG
+    }
+    /**
+     * 网络加载类型声明
+     */
+    public enum NetLoadType {
+        LOAD_STRATEGY_NORMAL,
+        LOAD_STRATEGY_ONLY_WIFI
+    }
+
+
+    /**
      * 需要解析的图片url
      */
     private String imageUrl;
     /**
      * 类型（大图，中图，小图）
      */
-    private ImageLoaderUtil.LoadSizeType type;
+    private LoadSizeType type;
     /**
      * 当没有成功加载的时候显示的图片
      */
@@ -32,7 +51,7 @@ public class ImageLoader {
     /**
      * 加载策略，是否在wifi下加载
      */
-    private ImageLoaderUtil.NetLoadType wifiStrategy;
+    private NetLoadType wifiStrategy;
 
     private ImageLoader(Builder builder){
         this.imageUrl=builder.imageUrl;
@@ -67,50 +86,50 @@ public class ImageLoader {
     }
 
 
-    public ImageLoaderUtil.LoadSizeType getType() {
+    public LoadSizeType getType() {
         return type;
     }
 
-    public void setType(ImageLoaderUtil.LoadSizeType type) {
+    public void setType(LoadSizeType type) {
         this.type = type;
     }
 
-    public ImageLoaderUtil.NetLoadType getWifiStrategy() {
+    public NetLoadType getWifiStrategy() {
         return wifiStrategy;
     }
 
-    public void setWifiStrategy(ImageLoaderUtil.NetLoadType wifiStrategy) {
+    public void setWifiStrategy(NetLoadType wifiStrategy) {
         this.wifiStrategy = wifiStrategy;
     }
 
     public static class Builder {
         private String imageUrl;
-        private ImageLoaderUtil.LoadSizeType type;
+        private LoadSizeType type;
         private int placeHolder;
         private ImageView imageView;
-        private ImageLoaderUtil.NetLoadType wifiStrategy;
+        private NetLoadType wifiStrategy;
 
-        public Builder setImageUrl(String imageUrl) {
+        public Builder imageUrl(String imageUrl) {
             this.imageUrl = imageUrl;
             return this;
         }
 
-        public Builder setType(ImageLoaderUtil.LoadSizeType type) {
+        public Builder type(LoadSizeType type) {
             this.type = type;
             return this;
         }
 
-        public Builder setPlaceHolder(int placeHolder) {
-            this.placeHolder = placeHolder;
+        public Builder placeHolderID(int placeHolderID) {
+            this.placeHolder = placeHolderID;
             return this;
         }
 
-        public Builder setImageView(@Nonnull ImageView imageView) {
+        public Builder imageView(@Nonnull ImageView imageView) {
             this.imageView = imageView;
             return this;
         }
 
-        public Builder setWifiStrategy(ImageLoaderUtil.NetLoadType wifiStrategy) {
+        public Builder wifiStrategy(NetLoadType wifiStrategy) {
             this.wifiStrategy = wifiStrategy;
             return this;
         }
@@ -119,11 +138,11 @@ public class ImageLoader {
          *  初始化默认参数
          */
         public Builder(){
-            this.type=ImageLoaderUtil.LoadSizeType.PIC_NORMAL;
+            this.type=LoadSizeType.PIC_NORMAL;
             this.imageUrl="";
             this.imageView=null;
-            this.placeHolder = 0;
-            this.wifiStrategy= ImageLoaderUtil.NetLoadType.LOAD_STRATEGY_NORMAL;
+            this.placeHolder = R.drawable.default_place_holder;
+            this.wifiStrategy= NetLoadType.LOAD_STRATEGY_NORMAL;
         }
 
         /**

@@ -7,11 +7,12 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import me.newtrekwang.base.imageloader.ImageLoader;
+import me.newtrekwang.base.imageloader.ImageLoaderUtils;
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
 import me.newtrekwang.base.common.BaseApplication;
 import me.newtrekwang.base.ui.adapter.BaseRecyclerViewAdapter;
-import me.newtrekwang.base.utils.ImageLoaderUtils;
 
 /**
  * @author newtrekWang
@@ -34,7 +35,14 @@ public class GankIOMeizhiAdapter extends BaseRecyclerViewAdapter<NewsItem, GankI
     public void onBindViewHolder(@NonNull MeizhiItemViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         String imgUrl = dataList.get(position).getUrl();
-        ImageLoaderUtils.loadImage(BaseApplication.getBaseApplication(),imgUrl,R.mipmap.ic_launcher,holder.imgMeizhi);
+        ImageLoader imageLoader = new ImageLoader.Builder()
+                .imageUrl(imgUrl)
+                .placeHolderID(R.mipmap.ic_launcher)
+                .type(ImageLoader.LoadSizeType.PIC_NORMAL)
+                .imageView(holder.imgMeizhi)
+                .create();
+        ImageLoaderUtils.getInstance()
+                .loadImage(BaseApplication.getBaseApplication(),imageLoader);
     }
 
     public static class  MeizhiItemViewHolder extends RecyclerView.ViewHolder{

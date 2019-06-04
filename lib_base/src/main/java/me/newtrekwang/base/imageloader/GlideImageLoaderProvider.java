@@ -33,10 +33,10 @@ public class GlideImageLoaderProvider implements IImageLoaderStrategy {
                 return;
             }
 //       如果没有设置wifi下才加载图片，则具体再判断
-        ImageLoaderUtil.NetLoadType strategy = imageLoader.getWifiStrategy();
-        if (strategy == ImageLoaderUtil.NetLoadType.LOAD_STRATEGY_NORMAL){
+        ImageLoader.NetLoadType strategy = imageLoader.getWifiStrategy();
+        if (strategy == ImageLoader.NetLoadType.LOAD_STRATEGY_NORMAL){
             loadNormal(context,imageLoader);
-        }else if (strategy == ImageLoaderUtil.NetLoadType.LOAD_STRATEGY_ONLY_WIFI){
+        }else if (strategy == ImageLoader.NetLoadType.LOAD_STRATEGY_ONLY_WIFI){
             if (NetWorkUtils.getAPNType(context) == NetWorkUtils.NETSTATE_WIFI){
 //                有wifi,正常加载
                 loadNormal(context,imageLoader);
@@ -52,45 +52,46 @@ public class GlideImageLoaderProvider implements IImageLoaderStrategy {
      * load image with Glide
      */
     private void loadNormal(Context context, ImageLoader imageLoader){
-        Glide.with(context).load(imageLoader.getImageUrl())
-                .placeholder(imageLoader.getPlaceHolder())
-                .dontAnimate()
-                .into(imageLoader.getImageView());
+        if (imageLoader.getPlaceHolder() == 0){
+            Glide.with(context).load(imageLoader.getImageUrl())
+                    .dontAnimate()
+                    .centerCrop()
+                    .into(imageLoader.getImageView());
+        }else {
+            Glide.with(context).load(imageLoader.getImageUrl())
+                    .placeholder(imageLoader.getPlaceHolder())
+                    .dontAnimate()
+                    .centerCrop()
+                    .into(imageLoader.getImageView());
+        }
+
     }
     /**
      * load cache with Glide
      */
     private void loadCache(Context context, ImageLoader imageLoader){
-        Glide.with(context).using(new StreamModelLoader<String>() {
+        StreamModelLoader<String>  stringStreamModelLoader = new StreamModelLoader<String>() {
             @Override
             public DataFetcher<InputStream> getResourceFetcher(String model, int width, int height) {
-                return new DataFetcher<InputStream>() {
-                    @Override
-                    public InputStream loadData(Priority priority) throws Exception {
-                        return null;
-                    }
-
-                    @Override
-                    public void cleanup() {
-
-                    }
-
-                    @Override
-                    public String getId() {
-                        return null;
-                    }
-
-                    @Override
-                    public void cancel() {
-
-                    }
-                };
+                return null;
             }
-        }).load(imageLoader.getImageUrl())
-                .placeholder(imageLoader.getPlaceHolder())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .into(imageLoader.getImageView()
-                );
+        };
+        if (imageLoader.getPlaceHolder() == 0){
+            Glide.with(context).using(stringStreamModelLoader)
+                    .load(imageLoader.getImageUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate()
+                    .into(imageLoader.getImageView()
+                    );
+        }else {
+            Glide.with(context).using(stringStreamModelLoader)
+                    .load(imageLoader.getImageUrl())
+                    .placeholder(imageLoader.getPlaceHolder())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate()
+                    .into(imageLoader.getImageView()
+                    );
+        }
+
     }
 }

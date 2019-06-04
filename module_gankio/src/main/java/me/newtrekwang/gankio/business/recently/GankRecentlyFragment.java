@@ -30,6 +30,9 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import me.newtrekwang.base.common.BaseApplication;
+import me.newtrekwang.base.imageloader.ImageLoader;
+import me.newtrekwang.base.imageloader.ImageLoaderUtils;
 import me.newtrekwang.gankio.R;
 import me.newtrekwang.gankio.business.webbrowser.GankWebBrowserActivity;
 import me.newtrekwang.gankio.data.protocal.NewsItem;
@@ -37,7 +40,6 @@ import me.newtrekwang.gankio.inject.DaggerGankIOComponent;
 import me.newtrekwang.gankio.inject.GankIOModule;
 import me.newtrekwang.gankio.widgets.UMExpandLayout;
 import me.newtrekwang.base.ui.fragment.BaseMvpFragment;
-import me.newtrekwang.base.utils.ImageLoaderUtils;
 import me.newtrekwang.base.utils.L;
 import me.newtrekwang.base.utils.TimeUtils;
 import me.newtrekwang.provider.router.RouterPath;
@@ -221,7 +223,11 @@ public class GankRecentlyFragment extends BaseMvpFragment<GankRecentlyPresent> i
 
     @Override
     public void showMeiZhiImg(String url) {
-        ImageLoaderUtils.loadImage(getActivity(),url,R.drawable.ic_launcher_background,imgMeizhi);
+        ImageLoader imageLoader = new ImageLoader.Builder()
+                .imageUrl(url)
+                .imageView(imgMeizhi)
+                .create();
+        ImageLoaderUtils.getInstance().loadImage(BaseApplication.getBaseApplication(),imageLoader);
     }
 
     @Override
