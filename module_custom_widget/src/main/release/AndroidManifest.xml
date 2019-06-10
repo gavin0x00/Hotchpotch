@@ -2,6 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.newtrekwang.customwidget">
     <application>
-        <activity android:name="me.newtrekwang.customwidget.CustomWidgetMainActivity"/>
+        <activity android:name="me.newtrekwang.customwidget.main.CustomWidgetMainActivity"/>
     </application>
 </manifest>

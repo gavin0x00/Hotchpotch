@@ -21,7 +21,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * @fileName RxActivity
  * @createDate 2019/5/30 16:11
  * @email 408030208@qq.com
- * @desc TODO
+ * @desc 自定义支持AndroidX 的RxActivity
  */
 public class RxActivity extends AppCompatActivity implements LifecycleProvider<ActivityEvent> {
     private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
