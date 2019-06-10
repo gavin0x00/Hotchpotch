@@ -3,7 +3,6 @@ package me.newtrekwang.base.imageloader;
 import android.content.Context;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.stream.StreamModelLoader;
@@ -11,7 +10,7 @@ import com.bumptech.glide.load.model.stream.StreamModelLoader;
 import java.io.InputStream;
 
 import me.newtrekwang.base.utils.NetWorkUtils;
-import me.newtrekwang.base.utils.SettingUtil;
+import me.newtrekwang.base.utils.SettingUtils;
 
 /**
  * @className GlideImageLoaderProvider
@@ -26,7 +25,7 @@ public class GlideImageLoaderProvider implements IImageLoaderStrategy {
 
     @Override
     public void loadImage(Context context, ImageLoader imageLoader) {
-        boolean flag= SettingUtil.isOnlyWifiLoadImg();
+        boolean flag= SettingUtils.isOnlyWifiLoadImg();
 //       如果没有设置wifi下才加载图片，则直接加载
             if (!flag){
                 loadNormal(context,imageLoader);

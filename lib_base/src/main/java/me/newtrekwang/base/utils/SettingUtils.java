@@ -1,6 +1,6 @@
 package me.newtrekwang.base.utils;
 
-public class SettingUtil {
+public class SettingUtils {
     private static boolean onlyWifiLoadImg =false;
 
     public static boolean isOnlyWifiLoadImg() {
@@ -8,6 +8,6 @@ public class SettingUtil {
     }
 
     public static void setOnlyWifiLoadImg(boolean onlyWifiLoadImg) {
-        SettingUtil.onlyWifiLoadImg = onlyWifiLoadImg;
+        SettingUtils.onlyWifiLoadImg = onlyWifiLoadImg;
     }
 }

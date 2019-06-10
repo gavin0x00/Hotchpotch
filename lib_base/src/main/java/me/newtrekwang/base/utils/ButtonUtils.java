@@ -6,12 +6,12 @@ import android.widget.EditText;
 
 /**
  * @author newtrekWang
- * @fileName ButtonUtil
+ * @fileName ButtonUtils
  * @createDate 2018/10/9 17:48
  * @email 408030208@qq.com
  * @desc 设置按钮点击状态工具类
  */
-public final class ButtonUtil {
+public final class ButtonUtils {
     /**
      * 监听编辑框的变化，更新按钮可点击状态
      * @param editText 需要监听的编辑框

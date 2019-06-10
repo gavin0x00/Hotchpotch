@@ -4,13 +4,13 @@ import android.content.Context;
 
 /**
  * @author newtrekWang
- * @fileName DensityUtil
+ * @fileName DensityUtils
  * @createDate 2018/7/16 11:01
  * @email 408030208@qq.com
  * @desc 密度转换器
  */
-public final class DensityUtil {
-    private DensityUtil(){}
+public final class DensityUtils {
+    private DensityUtils(){}
 
     public static int dip2px(Context paramContext, float paramFloat)
     {

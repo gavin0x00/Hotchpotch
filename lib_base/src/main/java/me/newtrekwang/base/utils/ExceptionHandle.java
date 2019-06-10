@@ -17,7 +17,7 @@ import retrofit2.HttpException;
  * @email 408030208@qq.com
  * @desc 异常处理类
  */
-public class ExceptionHandle {
+public final class ExceptionHandle {
 
     private static final int UNAUTHORIZED = 401;
     private static final int FORBIDDEN = 403;
