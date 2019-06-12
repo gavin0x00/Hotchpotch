@@ -34,6 +34,8 @@ public final class CustomWidgetMainActivity extends BaseActivity {
     private List<Map<String,String>> list=new ArrayList<>();
     private SimpleAdapter simpleAdapter;
 
+    private final String KEY_TITLE = "key_title";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,47 +45,23 @@ public final class CustomWidgetMainActivity extends BaseActivity {
     }
 
     private void initData() {
-        Map<String,String> map_1=new HashMap<>(2);
-        map_1.put("title","PullRefreshLayout");
-        list.add(map_1);
-        Map<String,String> map_2=new HashMap<>(2);
-        map_2.put("title","CustomToast");
-        list.add(map_2);
-        Map<String,String> map_3=new HashMap<>(2);
-        map_3.put("title","ImageLoader");
-        list.add(map_3);
-        Map<String,String> map_4=new HashMap<>(2);
-        map_4.put("title","ExpandTextView");
-        list.add(map_4);
-        Map<String,String> map_5=new HashMap<>(2);
-        map_5.put("title","AutoScrollViewPager");
-        list.add(map_5);
-        Map<String,String> map_6=new HashMap<>(2);
-        map_6.put("title","Dialog");
-        list.add(map_6);
-        Map<String,String> map_7=new HashMap<>(2);
-        map_7.put("title","ContentProvider");
-        list.add(map_7);
-        Map<String,String> map_8=new HashMap<>(2);
-        map_8.put("title","BottemSheetDialogFragment");
-        list.add(map_8);
-        Map<String,String> map_9=new HashMap<>(2);
-        map_9.put("title","startServiceDownload");
-        list.add(map_9);
-        Map<String,String> map_10=new HashMap<>(2);
-        map_10.put("title","notification");
-        list.add(map_10);
+        String[] titles =  getResources().getStringArray(R.array.main_items);
+        for (int i=0;i<titles.length;i++){
+            Map<String,String> map=new HashMap<>(2);
+            map.put(KEY_TITLE,titles[i]);
+            list.add(map);
+        }
     }
 
     private void initView() {
         listView = findViewById(R.id.custom_widget_main_lv);
-        simpleAdapter=new SimpleAdapter(this,list,android.R.layout.simple_list_item_1,new String[]{"title"}, new int[]{android.R.id.text1});
+        simpleAdapter=new SimpleAdapter(this,list,android.R.layout.simple_list_item_1,new String[]{KEY_TITLE}, new int[]{android.R.id.text1});
         listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Map<String,String> itemData = (Map<String, String>) simpleAdapter.getItem(position);
-                String title = (itemData==null?null:itemData.get("title"));
+                String title = (itemData==null?null:itemData.get(KEY_TITLE));
                 if (!TextUtils.isEmpty(title)){
                     DealItemStrategyFactory.DealItem dealItem = DealItemStrategyFactory.getInstance().createDealItemStrategy(title);
                     if (dealItem != null){

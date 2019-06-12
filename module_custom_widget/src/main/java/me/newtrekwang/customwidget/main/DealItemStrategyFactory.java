@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.newtrekwang.customwidget.main.strategy.ToastStrategy;
+
 /**
  * @className DealItemStrategyFactory
  * @createDate 2019/6/10 0:26
@@ -19,7 +21,9 @@ public final class DealItemStrategyFactory {
      * 单例
      */
     private DealItemStrategyFactory(){ }
+
     public static DealItemStrategyFactory instance;
+
     public static DealItemStrategyFactory getInstance(){
         if (instance == null){
             synchronized (DealItemStrategyFactory.class){
@@ -32,10 +36,13 @@ public final class DealItemStrategyFactory {
     }
 
 
-    public static final String TITLE_TOAST = "toast";
-    public static final String TITLE_FRAGMENT = "fragment";
-    public static final String TITLE_LISTVIEW = "listview";
-    public static final String TITLE_DIALOG = "dialog";
+    public static final String TITLE_PULLREFRESHLAYOUT = "PullRefreshLayout";
+    public static final String TITLE_TOAST = "CustomToast";
+    public static final String TITLE_BUTTON = "Button";
+    public static final String TITLE_IMAGEVIEW = "ImageView";
+    public static final String TITLE_CARDVIEW = "CardView";
+    public static final String TITLE_DIALOD = "Dialog";
+    public static final String TITLE_RECYCLERVIEW = "RecyclerView";
 
 
     public interface DealItem {
@@ -47,8 +54,9 @@ public final class DealItemStrategyFactory {
     }
 
     public static final Map<String,String> itemStrategyMap = new HashMap<>();
+
     static {
-        itemStrategyMap.put(TITLE_TOAST,ToastStrategy.class.getCanonicalName());
+        itemStrategyMap.put(TITLE_TOAST, ToastStrategy.class.getCanonicalName());
     }
 
     /**

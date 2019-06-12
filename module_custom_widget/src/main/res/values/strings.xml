@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">moudle_custom_widget</string>
+    <string name="app_name" translatable="false">moudle_custom_widget</string>
+
+    <string-array name="main_items">
+        <item>PullRefreshLayout</item>
+        <item>CustomToast</item>
+        <item>Button</item>
+        <item>ImageView</item>
+        <item>CardView</item>
+        <item>RecyclerView</item>
+        <item>Dialog</item>
+    </string-array>
 </resources>
