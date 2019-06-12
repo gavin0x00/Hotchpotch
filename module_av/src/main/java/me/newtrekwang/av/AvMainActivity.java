@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -24,10 +25,20 @@ public class AvMainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        activityAvMainBinding.avMainBtnRecordAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance()
+                        .build(RouterPath.EnterModule.AV_IMAGE_PROCESS)
+                        .navigation();
+            }
+        });
         activityAvMainBinding.avMainBtnImageProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ARouter.getInstance()
+                        .build(RouterPath.EnterModule.AV_AUDIO_PROCESS)
+                        .navigation();
             }
         });
     }

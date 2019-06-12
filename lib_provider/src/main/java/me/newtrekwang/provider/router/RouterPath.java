@@ -108,6 +108,10 @@ public final class RouterPath {
         * 图片处理页
         */
        public static final String AV_IMAGE_PROCESS = AV+"ImageProcess";
+       /**
+        * 音频处理页
+        */
+       public static final String AV_AUDIO_PROCESS = AV+"Audio";
        /********************************************* av end ************************************************************************/
 
 
