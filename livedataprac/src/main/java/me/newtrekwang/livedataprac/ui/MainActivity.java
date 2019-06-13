@@ -1,22 +1,27 @@
 package me.newtrekwang.livedataprac.ui;
 
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.BiConsumer;
+import java.util.function.Supplier;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import me.newtrekwang.livedataprac.R;
-import me.newtrekwang.livedataprac.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv;
     private Button btn;
-    private MainViewModel mainViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +31,47 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TwoActivity.class));
+                getData();
             }
         });
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getmElapsedTime().observe(this, new Observer<Long>() {
+
+    }
+
+    private void getData(){
+        CompletableFuture.supplyAsync(new Supplier<String>() {
             @Override
-            public void onChanged(Long aLong) {
-                tv.setText(aLong.toString());
+            public String get() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return "hello world";
+            }
+        },AppExecutors.IO()).whenComplete(new BiConsumer<String, Throwable>() {
+            @Override
+            public void accept(String s, Throwable throwable) {
+                tv.setText(s);
             }
         });
+    }
+
+
+    static class AppExecutors {
+        public static ExecutorService IO(){
+            return Executors.newCachedThreadPool();
+        }
+
+        public static Executor Main(){
+            return new MainThreadExecutor();
+        }
+
+        static class MainThreadExecutor implements Executor{
+            private Handler handler = new Handler(Looper.getMainLooper());
+            @Override
+            public void execute(Runnable command) {
+                handler.post(command);
+            }
+        }
     }
 }
