@@ -3,5 +3,7 @@
     package="me.newtrekwang.customwidget">
     <application>
         <activity android:name="me.newtrekwang.customwidget.main.CustomWidgetMainActivity"/>
+        <activity android:name=".toast.ToastActivity" />
+        <activity android:name=".task.TaskLibActivity"/>
     </application>
 </manifest>

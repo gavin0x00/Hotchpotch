@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.newtrekwang.customwidget.main.strategy.TaskStrategy;
 import me.newtrekwang.customwidget.main.strategy.ToastStrategy;
 
 /**
@@ -43,6 +44,7 @@ public final class DealItemStrategyFactory {
     public static final String TITLE_CARDVIEW = "CardView";
     public static final String TITLE_DIALOD = "Dialog";
     public static final String TITLE_RECYCLERVIEW = "RecyclerView";
+    public static final String TITLE_TASK = "Task";
 
 
     public interface DealItem {
@@ -57,6 +59,7 @@ public final class DealItemStrategyFactory {
 
     static {
         itemStrategyMap.put(TITLE_TOAST, ToastStrategy.class.getCanonicalName());
+        itemStrategyMap.put(TITLE_TASK, TaskStrategy.class.getCanonicalName());
     }
 
     /**

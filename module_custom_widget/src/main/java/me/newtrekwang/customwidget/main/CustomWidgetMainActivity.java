@@ -45,7 +45,7 @@ public final class CustomWidgetMainActivity extends BaseActivity {
     }
 
     private void initData() {
-        String[] titles =  getResources().getStringArray(R.array.main_items);
+        String[] titles =  getResources().getStringArray(R.array.main_menu_items);
         for (int i=0;i<titles.length;i++){
             Map<String,String> map=new HashMap<>(2);
             map.put(KEY_TITLE,titles[i]);

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">moudle_custom_widget</string>
 
-    <string-array name="main_items">
+    <string-array name="main_menu_items">
+        <item>Task</item>
         <item>PullRefreshLayout</item>
         <item>CustomToast</item>
         <item>Button</item>
