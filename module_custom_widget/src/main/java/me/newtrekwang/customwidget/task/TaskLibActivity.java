@@ -2,6 +2,7 @@ package me.newtrekwang.customwidget.task;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class TaskLibActivity extends AppCompatActivity {
                 testAsyncTask();
             }
         });
+        HandlerThread
     }
 
     private void testAsyncTask(){

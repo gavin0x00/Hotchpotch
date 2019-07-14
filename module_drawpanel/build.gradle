@@ -1,4 +1,4 @@
-if (debugGankModule.toBoolean()) {
+if (debugDrawPanelModule.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -9,21 +9,23 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        if (debugGankModule.toBoolean()) {
-            applicationId "me.newtrekwang.gankio"
+
+        if (debugDrawPanelModule.toBoolean()) {
+            applicationId "me.newtrekwang.module_drawpanel"
         }
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
+
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-         javaCompileOptions {
-                annotationProcessorOptions {
-                    arguments = [AROUTER_MODULE_NAME: project.getName()]
-                }
-          }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
 
         compileOptions {
             targetCompatibility JavaVersion.VERSION_1_8
@@ -67,21 +69,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_provider')
-    // smartRefreshLayout
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-24'
-    // 多状态视图
-    implementation 'com.classic.common:multiple-status-view:1.6'
-    // paging
-    implementation deps.arch_paging
-    implementation deps.arch_paging_rxjava
-    // room
-    implementation deps.room.runtime
-    implementation deps.room.rxjava2
-    annotationProcessor deps.room.compiler
     // dagger
     annotationProcessor deps.dagger.compiler
     // aRouter
     annotationProcessor deps.arouter_compiler
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'

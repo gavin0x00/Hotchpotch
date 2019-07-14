@@ -1,1 +1,1 @@
-include ':app', ':lib_base', ':lib_provider', ':module_gankio', ':module_downloader', ':lib_download', ':module_av', ':module_custom_widget', ':livedataprac'
+include ':app', ':lib_base', ':lib_provider', ':module_gankio', ':module_downloader', ':lib_download', ':module_av', ':module_custom_widget', ':livedataprac', ':module_drawpanel'
