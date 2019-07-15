@@ -1,4 +1,4 @@
-package me.newtrekwang.module_drawpanel;
+package me.newtrekwang.drawpanel;
 
 import org.junit.Test;
 

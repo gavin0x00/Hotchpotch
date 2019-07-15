@@ -7,11 +7,9 @@
     android:orientation="vertical"
     tools:context=".DrawMainActivity">
 
-    <TextView
+    <me.newtrekwang.drawpanel.DrawPanel
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        android:text="Hello World!"
-         />
+        android:id="@+id/draw_main_draw_panel"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
