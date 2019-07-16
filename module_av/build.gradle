@@ -12,7 +12,7 @@ android {
         if (debugAvModule.toBoolean()) {
             applicationId "me.newtrekwang.av"
         }
-        minSdkVersion build_versions.min_sdk
+        minSdkVersion 21
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
@@ -88,9 +88,25 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_provider')
     // dagger2
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     annotationProcessor deps.dagger.compiler
     // aRouter
     annotationProcessor deps.arouter_compiler
+
+    // required, enough for most devices.
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+
+    // Other ABIs: optional
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
+
+    // ExoPlayer as IMediaPlayer: optional, experimental
+    implementation 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'

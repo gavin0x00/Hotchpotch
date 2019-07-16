@@ -112,6 +112,10 @@ public final class RouterPath {
         * 音频处理页
         */
        public static final String AV_AUDIO_PROCESS = AV+"Audio";
+       /**
+        * 视频直播测试页
+        */
+       public static final String AV_LIVE_PLAY = AV+"LivePlay";
        /********************************************* av end ************************************************************************/
 
 
