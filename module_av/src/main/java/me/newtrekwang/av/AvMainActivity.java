@@ -41,6 +41,14 @@ public class AvMainActivity extends AppCompatActivity {
                         .navigation();
             }
         });
+        activityAvMainBinding.avMainBtnLivePlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance()
+                        .build(RouterPath.EnterModule.AV_LIVE_PLAY)
+                        .navigation();
+            }
+        });
     }
 
 
