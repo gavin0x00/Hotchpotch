@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".toast.ToastActivity" />
         <activity android:name=".task.TaskLibActivity"/>
+        <activity android:name=".ringview.RingViewActivity"/>
     </application>
 
 </manifest>

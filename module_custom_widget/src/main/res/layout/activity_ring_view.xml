@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <me.newtrekwang.customwidget.ringview.RingView
+        android:layout_width="300dp"
+        app:innerRingWidth="40dp"
+        app:textSize="70sp"
+        app:part="50"
+        app:outRingWidth="30dp"
+        android:layout_height="300dp" />
+
+</LinearLayout>

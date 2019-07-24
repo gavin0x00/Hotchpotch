@@ -3,6 +3,7 @@
 
     <string-array name="main_menu_items">
         <item>Task</item>
+        <item>RingView</item>
         <item>PullRefreshLayout</item>
         <item>CustomToast</item>
         <item>Button</item>

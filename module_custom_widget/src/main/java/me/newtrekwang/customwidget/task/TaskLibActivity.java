@@ -2,15 +2,15 @@ package me.newtrekwang.customwidget.task;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Arrays;
 
-import androidx.appcompat.app.AppCompatActivity;
 import me.newtrekwang.customwidget.R;
 /**
  * @className TaskLibActivity
@@ -42,7 +42,6 @@ public class TaskLibActivity extends AppCompatActivity {
                 testAsyncTask();
             }
         });
-        HandlerThread
     }
 
     private void testAsyncTask(){
